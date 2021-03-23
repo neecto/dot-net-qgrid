@@ -1,8 +1,4 @@
 ﻿src/.vs
-src/QueryableGrid/bin
-src/QueryableGrid/obj
-src/QueryableGrid.EntityFrameworkCore/obj
-src/QueryableGrid.EntityFrameworkCore/bin
 src/QGrid/bin
 src/QGrid/obj
 src/QGrid.EntityFrameworkCore/bin
