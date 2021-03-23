@@ -15,7 +15,7 @@ namespace QueryableGrid.EntityFrameworkCore
             var total = await query.CountAsync();
             var resultQuery = query
                 .ApplyFilters(request.Filters)
-                .ApplyOrdering(request.OrderBy, request.ThenOrderBy);
+                .ApplyOrdering(request.Ordering);
 
             var totalFiltered = await resultQuery.CountAsync();
             var skip = request.PageSize * (request.PageNumber - 1);

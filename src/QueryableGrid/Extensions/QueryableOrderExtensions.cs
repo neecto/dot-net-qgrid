@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using QueryableGrid.Enums;
@@ -8,36 +9,31 @@ namespace QueryableGrid.Extensions
 {
     public static class QueryableOrderExtensions
     {
-        public static IQueryable<T> ApplyOrdering<T>(this IQueryable<T> query, ListViewOrder orderBy, ListViewOrder thenBy)
+        public static IQueryable<T> ApplyOrdering<T>(this IQueryable<T> query, IList<ListViewOrder> ordering)
         {
-            if (string.IsNullOrWhiteSpace(orderBy?.Column))
+            if (ordering == null || ordering.Count == 0)
                 return query;
 
-            IOrderedQueryable<T> orderedQuery;
+            IOrderedQueryable<T> orderedQuery = null;
 
-            if (orderBy.Type == OrderTypeEnum.Asc)
+            foreach (var order in ordering)
             {
-                orderedQuery = query
-                    .Order(orderBy.Column, "OrderBy");
-            }
-            else
-            {
-                orderedQuery = query
-                    .Order(orderBy.Column, "OrderByDescending");
-            }
+                if (orderedQuery == null)
+                {
+                    var orderMethod = order.Type == OrderTypeEnum.Asc
+                        ? "OrderBy"
+                        : "OrderByDescending";
 
-            if (string.IsNullOrWhiteSpace(thenBy?.Column))
-                return orderedQuery;
+                    orderedQuery = query.Order(order.Column, orderMethod);
+                }
+                else
+                {
+                    var orderMethod = order.Type == OrderTypeEnum.Asc
+                        ? "ThenBy"
+                        : "ThenByDescending";
 
-            if (thenBy.Type == OrderTypeEnum.Asc)
-            {
-                orderedQuery = orderedQuery
-                    .Order(thenBy.Column, "ThenBy");
-            }
-            else
-            {
-                orderedQuery = orderedQuery
-                    .Order(thenBy.Column, "ThenByDescending");
+                    orderedQuery = orderedQuery.Order(order.Column, orderMethod);
+                }
             }
 
             return orderedQuery;
@@ -49,6 +45,11 @@ namespace QueryableGrid.Extensions
             string methodName
         )
         {
+            if (string.IsNullOrWhiteSpace(column))
+            {
+                throw new ArgumentNullException(nameof(column), "Column name cannot be empty for ordering");
+            }
+
             var parameterExpression = Expression.Parameter(typeof(T), typeof(T).Name);
             var propertyInfo = column.GetPropertyInfo<T>();
             var memberExpression = Expression.Property(parameterExpression, propertyInfo);
