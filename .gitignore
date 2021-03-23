@@ -1,5 +1,3 @@
 ﻿src/.vs
-src/QGrid/bin
-src/QGrid/obj
-src/QGrid.EntityFrameworkCore/bin
-src/QGrid.EntityFrameworkCore/obj
+src/*/bin
+src/*/obj
