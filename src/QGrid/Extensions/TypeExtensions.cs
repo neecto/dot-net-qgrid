@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QueryableGrid.Extensions
+namespace QGrid.Extensions
 {
     internal static class TypeExtensions
     {

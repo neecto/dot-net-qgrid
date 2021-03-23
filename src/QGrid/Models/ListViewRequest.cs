@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace QueryableGrid.Models
+namespace QGrid.Models
 {
     public class ListViewRequest
     {

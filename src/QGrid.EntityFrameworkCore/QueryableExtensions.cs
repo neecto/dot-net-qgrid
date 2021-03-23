@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using QueryableGrid.Extensions;
-using QueryableGrid.Models;
+using QGrid.Extensions;
+using QGrid.Models;
 
-namespace QueryableGrid.EntityFrameworkCore
+namespace QGrid.EntityFrameworkCore
 {
     public static class QueryableExtensions
     {

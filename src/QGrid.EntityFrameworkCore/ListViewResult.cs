@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace QueryableGrid.EntityFrameworkCore
+namespace QGrid.EntityFrameworkCore
 {
     public class ListViewResult<T> where T : class
     {

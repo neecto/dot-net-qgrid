@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using QueryableGrid.Enums;
-using QueryableGrid.Extensions;
-using QueryableGrid.Models;
+using QGrid.Enums;
+using QGrid.Extensions;
+using QGrid.Models;
 
-namespace QueryableGrid.FilterExpressionProviders
+namespace QGrid.FilterExpressionProviders
 {
-    public class NullValueFilterExpressionProvider : BaseFilterExpressionProvider
+    internal class NullValueFilterExpressionProvider : BaseFilterExpressionProvider
     {
         public NullValueFilterExpressionProvider(
             PropertyInfo memberPropertyInfo,

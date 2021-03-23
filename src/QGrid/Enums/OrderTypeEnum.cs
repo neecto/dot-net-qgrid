@@ -1,4 +1,4 @@
-﻿namespace QueryableGrid.Enums
+﻿namespace QGrid.Enums
 {
     public enum OrderTypeEnum
     {

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using QueryableGrid.Enums;
-using QueryableGrid.Models;
+using QGrid.Enums;
+using QGrid.Models;
 
-namespace QueryableGrid.FilterExpressionProviders
+namespace QGrid.FilterExpressionProviders
 {
-    public class BoolFilterExpressionsProvider : BaseFilterExpressionProvider
+    internal class NumberFilterExpressionProvider : BaseFilterExpressionProvider
     {
-        public BoolFilterExpressionsProvider(
+        public NumberFilterExpressionProvider(
             PropertyInfo memberPropertyInfo,
             ListViewFilter filter,
             ParameterExpression entityParameterExpression
@@ -28,11 +28,19 @@ namespace QueryableGrid.FilterExpressionProviders
                     return Expression.Equal(memberExpression, constantExpression);
                 case FilterConditionEnum.Neq:
                     return Expression.NotEqual(memberExpression, constantExpression);
+                case FilterConditionEnum.Lt:
+                    return Expression.LessThan(memberExpression, constantExpression);
+                case FilterConditionEnum.Gt:
+                    return Expression.GreaterThan(memberExpression, constantExpression);
+                case FilterConditionEnum.Lte:
+                    return Expression.LessThanOrEqual(memberExpression, constantExpression);
+                case FilterConditionEnum.Gte:
+                    return Expression.GreaterThanOrEqual(memberExpression, constantExpression);
                 default:
                     throw new ArgumentOutOfRangeException(
                         nameof(condition),
                         condition,
-                        $"Filter condition {Enum.GetName(typeof(FilterConditionEnum), condition)} is not supported for boolean values"
+                        $"Filter condition {Enum.GetName(typeof(FilterConditionEnum), condition)} is not supported for number values"
                     );
             }
         }

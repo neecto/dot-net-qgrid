@@ -1,6 +1,6 @@
-﻿using QueryableGrid.Enums;
+﻿using QGrid.Enums;
 
-namespace QueryableGrid.Models
+namespace QGrid.Models
 {
     public class ListViewOrder
     {

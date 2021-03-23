@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\QueryableGrid\QueryableGrid.csproj" />
+    <ProjectReference Include="..\QGrid\QGrid.csproj" />
   </ItemGroup>
 
 </Project>

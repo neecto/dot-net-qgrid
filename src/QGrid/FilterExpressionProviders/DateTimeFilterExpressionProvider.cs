@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using QueryableGrid.Enums;
-using QueryableGrid.Models;
+using QGrid.Enums;
+using QGrid.Models;
 
-namespace QueryableGrid.FilterExpressionProviders
+namespace QGrid.FilterExpressionProviders
 {
-    public class DateTimeFilterExpressionProvider : BaseFilterExpressionProvider
+    internal class DateTimeFilterExpressionProvider : BaseFilterExpressionProvider
     {
         private readonly FilterConditionEnum[] _dateOnlyConditions =
         {

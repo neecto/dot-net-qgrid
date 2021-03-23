@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using QueryableGrid.Models;
+using QGrid.Models;
 
-namespace QueryableGrid.FilterExpressionProviders
+namespace QGrid.FilterExpressionProviders
 {
-    public abstract class BaseFilterExpressionProvider
+    internal abstract class BaseFilterExpressionProvider
     {
         protected readonly ListViewFilter Filter;
         protected readonly PropertyInfo MemberPropertyInfo;
