@@ -4,7 +4,6 @@ using QGrid.Enums;
 using QGrid.Extensions;
 using QGrid.Models;
 using QGrid.Tests.Fixtures;
-using QGrid.Tests.Models;
 using Xunit;
 
 namespace QGrid.Tests.FilterTests
@@ -32,8 +31,11 @@ namespace QGrid.Tests.FilterTests
             };
 
             var result = _fixture.TestQueryable
-                .ApplyFilters<TestItem>(filter)
+                .ApplyFilters(filter)
                 .ToList();
+
+            Assert.NotEmpty(result);
+            Assert.All(result, x => Assert.Equal(1, x.IntColumn));
         }
     }
 }

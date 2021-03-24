@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:    
+  qgrid.test:
+    image: qgrid.test
+    build:
+        context: .
+        dockerfile: Dockerfile
+        target: test

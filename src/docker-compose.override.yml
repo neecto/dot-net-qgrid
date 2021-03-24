@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  qgrid.test:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Release
+    entrypoint: dotnet test -c Release --no-build --logger trx --results-directory /var/temp/test-results QGrid.Tests.csproj
+    volumes:
+      - ../test-results:/var/temp/test-results
+      
+#  sqlserver:
+#    image: "mcr.microsoft.com/mssql/server"
+#    ports:
+#      - "1433:1433"
+#    environment:
+#      SA_PASSWORD: "QGridTest"
+#      ACCEPT_EULA: "Y"
