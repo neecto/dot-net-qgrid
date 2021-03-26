@@ -8,11 +8,12 @@ using Xunit;
 
 namespace QGrid.Tests.FilterTests
 {
-    public class NumberFilterTests : IClassFixture<SqlServerDatabaseFixture>
+    [Collection("Database collection")]
+    public class NumberFilterTests
     {
-        private readonly SqlServerDatabaseFixture _fixture;
+        private readonly DatabaseFixture _fixture;
 
-        public NumberFilterTests(SqlServerDatabaseFixture fixture)
+        public NumberFilterTests(DatabaseFixture fixture)
         {
             _fixture = fixture;
         }

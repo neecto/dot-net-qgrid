@@ -4,6 +4,7 @@ namespace QGrid.Tests.Models
 {
     public class TestItem
     {
+        public int Id { get; set; }
         public int IntColumn { get; set; }
         public int? IntNullableColumn { get; set; }
         public string StringColumn { get; set; }
