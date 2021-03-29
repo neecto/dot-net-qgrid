@@ -88,49 +88,89 @@ namespace QGrid.Tests.FilterTests
         [Fact]
         public void Int_Lt_HasResults()
         {
+            var filters = CreateQGridFilters(FilterConditionEnum.Lt, 20);
 
+            var result = ExecuteQuery(filters);
+
+            Assert.NotEmpty(result);
+            Assert.True(result.Count < Fixture.TotalItems);
+            Assert.All(result, x => Assert.True(x.IntColumn < 20));
         }
 
         [Fact]
         public void Int_Lt_NoResults()
         {
+            var filters = CreateQGridFilters(FilterConditionEnum.Lt, 1);
 
+            var result = ExecuteQuery(filters);
+
+            Assert.Empty(result);
         }
 
         [Fact]
         public void Int_Gt_HasResults()
         {
+            var filters = CreateQGridFilters(FilterConditionEnum.Gt, 10);
 
+            var result = ExecuteQuery(filters);
+
+            Assert.NotEmpty(result);
+            Assert.True(result.Count < Fixture.TotalItems);
+            Assert.All(result, x => Assert.True(x.IntColumn > 10));
         }
 
         [Fact]
         public void Int_Gt_NoResults()
         {
+            var filters = CreateQGridFilters(FilterConditionEnum.Gt, 20);
 
+            var result = ExecuteQuery(filters);
+
+            Assert.Empty(result);
         }
 
         [Fact]
         public void Int_Lte_HasResults()
         {
+            var filters = CreateQGridFilters(FilterConditionEnum.Lte, 2);
 
+            var result = ExecuteQuery(filters);
+
+            Assert.NotEmpty(result);
+            Assert.True(result.Count < Fixture.TotalItems);
+            Assert.All(result, x => Assert.True(x.IntColumn <= 2));
         }
 
         [Fact]
         public void Int_Lte_NoResults()
         {
+            var filters = CreateQGridFilters(FilterConditionEnum.Lte, 0);
 
+            var result = ExecuteQuery(filters);
+
+            Assert.Empty(result);
         }
 
         [Fact]
         public void Int_Gte_HasResults()
         {
+            var filters = CreateQGridFilters(FilterConditionEnum.Gte, 20);
 
+            var result = ExecuteQuery(filters);
+
+            Assert.NotEmpty(result);
+            Assert.True(result.Count < Fixture.TotalItems);
+            Assert.All(result, x => Assert.True(x.IntColumn >= 20));
         }
 
         [Fact]
         public void Int_Gte_NoResults()
         {
+            var filters = CreateQGridFilters(FilterConditionEnum.Gte, 21);
 
+            var result = ExecuteQuery(filters);
+
+            Assert.Empty(result);
         }
     }
 }
