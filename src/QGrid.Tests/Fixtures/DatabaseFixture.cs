@@ -12,6 +12,7 @@ namespace QGrid.Tests.Fixtures
     public class DatabaseFixture : IDisposable
     {
         public IQueryable<TestItem> TestQueryable { get; }
+        public int TotalItems { get; set; }
         private readonly TestDbContext _dbContext;
 
         public DatabaseFixture()
@@ -19,12 +20,14 @@ namespace QGrid.Tests.Fixtures
             _dbContext = new TestDbContext();
             SetupDatabase();
 
-            var list = CreateTestItems();
+            var list = TestDataGenerator.CreateTestItems();
 
+            _dbContext.TestItems.RemoveRange(_dbContext.TestItems);
             _dbContext.TestItems.AddRange(list);
             _dbContext.SaveChanges();
 
             TestQueryable = _dbContext.TestItems;
+            TotalItems = TestQueryable.Count();
         }
 
         public void Dispose()
@@ -34,13 +37,17 @@ namespace QGrid.Tests.Fixtures
 
         private void SetupDatabase()
         {
-            bool dbReady = false;
+            var dbReady = false;
 
             while (!dbReady)
             {
                 try
                 {
-                    _dbContext.Database.Migrate();
+                    if (_dbContext.Database.GetPendingMigrations().Any())
+                    {
+                        _dbContext.Database.Migrate();
+                    }
+
                     dbReady = true;
                 }
                 catch (SqlException e)
@@ -49,23 +56,6 @@ namespace QGrid.Tests.Fixtures
                     Thread.Sleep(10 * 1000);
                 }
             }
-        }
-
-        private List<TestItem> CreateTestItems()
-        {
-            var list = new List<TestItem>
-            {
-                new TestItem
-                {
-                    IntColumn = 1
-                },
-                new TestItem
-                {
-                    IntColumn = 2
-                }
-            };
-
-            return list;
         }
     }
 }
