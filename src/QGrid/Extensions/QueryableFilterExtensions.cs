@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using QGrid.Enums;
 using QGrid.FilterExpressionProviders;
 using QGrid.Models;
 
@@ -9,7 +9,7 @@ namespace QGrid.Extensions
 {
     public static class QueryableFilterExtensions
     {
-        public static IQueryable<T> ApplyFilters<T>(this IQueryable<T> query, IList<QGridFilter> filters)
+        public static IQueryable<T> ApplyFilters<T>(this IQueryable<T> query, QGridFilters filters)
             where T : class
         {
             if (filters == null)
@@ -18,7 +18,7 @@ namespace QGrid.Extensions
             Expression resultExpression = null;
             var parameterExpression = Expression.Parameter(typeof(T), typeof(T).Name);
 
-            foreach (var filter in filters)
+            foreach (var filter in filters.Filters)
             {
                 var filterExpression = GetFilterExpression<T>(filter, parameterExpression);
 
@@ -28,7 +28,9 @@ namespace QGrid.Extensions
                 }
                 else
                 {
-                    resultExpression = Expression.AndAlso(resultExpression, filterExpression);
+                    resultExpression = filters.Operator == FilterOperatorEnum.And
+                        ? Expression.AndAlso(resultExpression, filterExpression)
+                        : Expression.OrElse(resultExpression, filterExpression);
                 }
             }
 

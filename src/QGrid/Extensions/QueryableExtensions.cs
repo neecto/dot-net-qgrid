@@ -11,7 +11,7 @@ namespace QGrid.Extensions
         {
             var total = query.Count();
             var resultQuery = query
-                .ApplyFilters(request.Filters)
+                .ApplyFilters(request.QGridFilters)
                 .ApplyOrdering(request.Ordering);
 
             var totalFiltered = resultQuery.Count();
