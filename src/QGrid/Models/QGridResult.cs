@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace QGrid.EntityFrameworkCore
+namespace QGrid.Models
 {
-    public class ListViewResult<T> where T : class
+    public class QGridResult<T> where T : class
     {
         public int PageNumber { get; set; }
         public int ItemsOnPage { get; set; }

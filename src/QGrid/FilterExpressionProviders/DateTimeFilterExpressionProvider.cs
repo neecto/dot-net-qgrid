@@ -21,7 +21,7 @@ namespace QGrid.FilterExpressionProviders
 
         public DateTimeFilterExpressionProvider(
             PropertyInfo memberPropertyInfo,
-            ListViewFilter filter,
+            QGridFilter filter,
             ParameterExpression entityParameterExpression
         ) : base(memberPropertyInfo, filter, entityParameterExpression)
         {

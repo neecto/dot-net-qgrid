@@ -7,13 +7,13 @@ namespace QGrid.FilterExpressionProviders
 {
     internal abstract class BaseFilterExpressionProvider
     {
-        protected readonly ListViewFilter Filter;
+        protected readonly QGridFilter Filter;
         protected readonly PropertyInfo MemberPropertyInfo;
         private protected readonly ParameterExpression EntityParameterExpression;
 
         protected BaseFilterExpressionProvider(
             PropertyInfo memberPropertyInfo,
-            ListViewFilter filter,
+            QGridFilter filter,
             ParameterExpression entityParameterExpression
         )
         {

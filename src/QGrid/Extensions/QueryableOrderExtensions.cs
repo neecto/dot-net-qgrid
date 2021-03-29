@@ -9,7 +9,7 @@ namespace QGrid.Extensions
 {
     public static class QueryableOrderExtensions
     {
-        public static IQueryable<T> ApplyOrdering<T>(this IQueryable<T> query, IList<ListViewOrder> ordering)
+        public static IQueryable<T> ApplyOrdering<T>(this IQueryable<T> query, IList<QGridOrder> ordering)
         {
             if (ordering == null || ordering.Count == 0)
                 return query;

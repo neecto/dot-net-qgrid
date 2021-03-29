@@ -2,7 +2,7 @@
 
 namespace QGrid.Models
 {
-    public class ListViewFilter
+    public class QGridFilter
     {
         public string Column { get; set; }
         public FilterConditionEnum Condition { get; set; }

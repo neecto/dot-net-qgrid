@@ -12,7 +12,7 @@ namespace QGrid.FilterExpressionProviders
     {
         public NullValueFilterExpressionProvider(
             PropertyInfo memberPropertyInfo,
-            ListViewFilter filter,
+            QGridFilter filter,
             ParameterExpression entityParameterExpression
         ) : base(memberPropertyInfo, filter, entityParameterExpression)
         {

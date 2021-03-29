@@ -1,29 +1,26 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using QGrid.Extensions;
 using QGrid.Models;
 
-namespace QGrid.EntityFrameworkCore
+namespace QGrid.Extensions
 {
     public static class QueryableExtensions
     {
-        public static async Task<QGridResult<T>> ToQGridResultAsync<T>(this IQueryable<T> query, QGridRequest request)
+        public static QGridResult<T> ToQGridResult<T>(this IQueryable<T> query, QGridRequest request)
             where T : class
         {
-            var total = await query.CountAsync();
+            var total = query.Count();
             var resultQuery = query
                 .ApplyFilters(request.Filters)
                 .ApplyOrdering(request.Ordering);
 
-            var totalFiltered = await resultQuery.CountAsync();
+            var totalFiltered = resultQuery.Count();
             var skip = request.PageSize * (request.PageNumber - 1);
 
-            var pageResults = await resultQuery
+            var pageResults = resultQuery
                 .Skip(skip)
                 .Take(request.PageSize)
-                .ToListAsync();
+                .ToList();
 
             var pagesTotal = (int)Math.Ceiling((double)totalFiltered / (double)request.PageSize);
 

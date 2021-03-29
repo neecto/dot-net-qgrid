@@ -11,7 +11,7 @@ namespace QGrid.FilterExpressionProviders
     {
         public StringFilterExpressionProvider(
             PropertyInfo memberPropertyInfo,
-            ListViewFilter filter,
+            QGridFilter filter,
             ParameterExpression entityParameterExpression
         ) : base(memberPropertyInfo, filter, entityParameterExpression)
         {

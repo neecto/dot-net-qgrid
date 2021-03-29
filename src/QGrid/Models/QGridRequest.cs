@@ -2,10 +2,10 @@
 
 namespace QGrid.Models
 {
-    public class ListViewRequest
+    public class QGridRequest
     {
-        public IList<ListViewOrder> Ordering { get; set; }
-        public IList<ListViewFilter> Filters { get; set; }
+        public IList<QGridOrder> Ordering { get; set; }
+        public IList<QGridFilter> Filters { get; set; }
         public int PageSize { get; set; }
         public int PageNumber { get; set; }
     }

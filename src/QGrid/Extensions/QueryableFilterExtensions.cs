@@ -9,7 +9,7 @@ namespace QGrid.Extensions
 {
     public static class QueryableFilterExtensions
     {
-        public static IQueryable<T> ApplyFilters<T>(this IQueryable<T> query, IList<ListViewFilter> filters)
+        public static IQueryable<T> ApplyFilters<T>(this IQueryable<T> query, IList<QGridFilter> filters)
             where T : class
         {
             if (filters == null)
@@ -40,7 +40,7 @@ namespace QGrid.Extensions
         }
 
         private static Expression GetFilterExpression<T>(
-            ListViewFilter filter,
+            QGridFilter filter,
             ParameterExpression entityParameterExpression
         )
         {

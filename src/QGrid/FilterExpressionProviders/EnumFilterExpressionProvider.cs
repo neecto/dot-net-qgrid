@@ -13,7 +13,7 @@ namespace QGrid.FilterExpressionProviders
     {
         public EnumFilterExpressionProvider(
             PropertyInfo memberPropertyInfo,
-            ListViewFilter filter,
+            QGridFilter filter,
             ParameterExpression entityParameterExpression
         ) : base(memberPropertyInfo, filter, entityParameterExpression)
         {

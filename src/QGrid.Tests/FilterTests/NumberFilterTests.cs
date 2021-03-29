@@ -21,9 +21,9 @@ namespace QGrid.Tests.FilterTests
         [Fact]
         public void Eq_OneFilter()
         {
-            var filter = new List<ListViewFilter>
+            var filter = new List<QGridFilter>
             {
-                new ListViewFilter
+                new QGridFilter
                 {
                     Column = "IntColumn",
                     Condition = FilterConditionEnum.Eq,
