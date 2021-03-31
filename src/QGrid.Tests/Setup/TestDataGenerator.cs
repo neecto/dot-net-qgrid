@@ -12,26 +12,31 @@ namespace QGrid.Tests.Setup
                 new TestItem
                 {
                     IntColumn = 1,
+                    IntNullableColumn = null,
                     DecimalColumn = 1.99m
                 },
                 new TestItem
                 {
                     IntColumn = 2,
+                    IntNullableColumn = 5,
                     DecimalColumn = 1.51m
                 },
                 new TestItem
                 {
                     IntColumn = 10,
+                    IntNullableColumn = 6,
                     DecimalColumn = 1.85m
                 },
                 new TestItem
                 {
                     IntColumn = 20,
+                    IntNullableColumn = null,
                     DecimalColumn = 20.50m
                 },
                 new TestItem
                 {
                     IntColumn = 20,
+                    IntNullableColumn = 8,
                     DecimalColumn = 20.99m
                 }
             };
