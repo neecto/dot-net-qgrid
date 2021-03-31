@@ -11,23 +11,28 @@ namespace QGrid.Tests.Setup
             {
                 new TestItem
                 {
-                    IntColumn = 1
+                    IntColumn = 1,
+                    DecimalColumn = 1.99m
                 },
                 new TestItem
                 {
-                    IntColumn = 2
+                    IntColumn = 2,
+                    DecimalColumn = 1.51m
                 },
                 new TestItem
                 {
-                    IntColumn = 10
+                    IntColumn = 10,
+                    DecimalColumn = 1.85m
                 },
                 new TestItem
                 {
-                    IntColumn = 20
+                    IntColumn = 20,
+                    DecimalColumn = 20.50m
                 },
                 new TestItem
                 {
-                    IntColumn = 20
+                    IntColumn = 20,
+                    DecimalColumn = 20.99m
                 }
             };
 
