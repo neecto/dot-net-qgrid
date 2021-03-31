@@ -32,11 +32,21 @@ namespace QGrid.Tests.FilterTests
 
         [Theory]
         [MemberData(nameof(NotSupportedConditions))]
-        public void NotSupportedConditions_Theory(FilterConditionEnum condition)
+        public void NotSupportedConditions_ShouldThrowArgumentOutOfRangeException_Theory(FilterConditionEnum condition)
         {
             var filters = CreateQGridFilters(condition, 1);
 
             Assert.Throws<ArgumentOutOfRangeException>(() => {
+                ExecuteQuery(filters);
+            });
+        }
+
+        [Fact]
+        public void InvalidValue_ShouldThrowArgumentException()
+        {
+            var filters = CreateQGridFilters(FilterConditionEnum.Eq, 1.05);
+
+            Assert.Throws<ArgumentException>(() => {
                 ExecuteQuery(filters);
             });
         }

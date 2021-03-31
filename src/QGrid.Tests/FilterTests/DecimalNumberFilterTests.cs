@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using QGrid.Enums;
 using QGrid.Tests.Fixtures;
 using Xunit;
@@ -10,6 +11,16 @@ namespace QGrid.Tests.FilterTests
     {
         public DecimalNumberFilterTests(DatabaseFixture fixture) : base(fixture, "DecimalColumn")
         {
+        }
+
+        [Fact]
+        public void InvalidValue_ShouldThrowArgumentException()
+        {
+            var filters = CreateQGridFilters(FilterConditionEnum.Eq, "not a number");
+
+            Assert.Throws<ArgumentException>(() => {
+                ExecuteQuery(filters);
+            });
         }
 
         [Fact]
