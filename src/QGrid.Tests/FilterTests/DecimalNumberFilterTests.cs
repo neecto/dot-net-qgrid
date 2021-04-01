@@ -82,7 +82,7 @@ namespace QGrid.Tests.FilterTests
         [Fact]
         public void Decimal_Lt_NoResults()
         {
-            var filters = CreateQGridFilters(FilterConditionEnum.Lt, 1.99m);
+            var filters = CreateQGridFilters(FilterConditionEnum.Lt, 1.51m);
 
             var result = ExecuteQuery(filters);
 
@@ -92,13 +92,13 @@ namespace QGrid.Tests.FilterTests
         [Fact]
         public void Decimal_Gt_HasResults()
         {
-            var filters = CreateQGridFilters(FilterConditionEnum.Gt, 1.5m);
+            var filters = CreateQGridFilters(FilterConditionEnum.Gt, 1.99m);
 
             var result = ExecuteQuery(filters);
 
             Assert.NotEmpty(result);
             Assert.True(result.Count < Fixture.TotalItems);
-            Assert.All(result, x => Assert.True(x.DecimalColumn > 1.5m));
+            Assert.All(result, x => Assert.True(x.DecimalColumn > 1.99m));
         }
 
         [Fact]
@@ -114,19 +114,19 @@ namespace QGrid.Tests.FilterTests
         [Fact]
         public void Decimal_Lte_HasResults()
         {
-            var filters = CreateQGridFilters(FilterConditionEnum.Lte, 1.99m);
+            var filters = CreateQGridFilters(FilterConditionEnum.Lte, 1.51m);
 
             var result = ExecuteQuery(filters);
 
             Assert.NotEmpty(result);
             Assert.True(result.Count < Fixture.TotalItems);
-            Assert.All(result, x => Assert.True(x.DecimalColumn <= 1.99m));
+            Assert.All(result, x => Assert.True(x.DecimalColumn <= 1.51m));
         }
 
         [Fact]
         public void Decimal_Lte_NoResults()
         {
-            var filters = CreateQGridFilters(FilterConditionEnum.Lte, 1.98m);
+            var filters = CreateQGridFilters(FilterConditionEnum.Lte, 1.5m);
 
             var result = ExecuteQuery(filters);
 
