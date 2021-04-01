@@ -3,6 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using QGrid.Enums;
+using QGrid.Extensions;
 using QGrid.Models;
 
 namespace QGrid.FilterExpressionProviders
@@ -46,9 +47,26 @@ namespace QGrid.FilterExpressionProviders
             }
         }
 
+        protected override MemberExpression GetMemberExpression()
+        {
+            var memberExpression = base.GetMemberExpression();
+
+            // if filtered value is not nullable, use base member expression
+            if (!MemberPropertyInfo.PropertyType.IsNullableType())
+            {
+                return memberExpression;
+            }
+
+            // otherwise, get member expression for "Value" property of a nullable type
+            var valuePropertyInfo = MemberPropertyInfo.PropertyType.GetProperty("Value");
+            return Expression.Property(memberExpression, valuePropertyInfo);
+        }
+
         protected override ConstantExpression GetFilterConstantExpression()
         {
-            var propertyType = MemberPropertyInfo.PropertyType;
+            var propertyType = MemberPropertyInfo.PropertyType.IsNullableType()
+                ? Nullable.GetUnderlyingType(MemberPropertyInfo.PropertyType)
+                : MemberPropertyInfo.PropertyType;
             var filterValueString = Filter.Value.ToString();
             var tryParseMethod = GetTryParseMethodInfo(propertyType);
 
@@ -66,12 +84,12 @@ namespace QGrid.FilterExpressionProviders
             return Expression.Constant(convertedValue);
         }
 
-        private MethodInfo GetTryParseMethodInfo(Type propertyType)
-            => propertyType.GetMethods()
+        private MethodInfo GetTryParseMethodInfo(Type propertyType) =>
+            propertyType.GetMethods()
                 .Single(
                     method => method.Name == "TryParse"
-                                && method.GetParameters().Length == 2
-                                && method.GetParameters().First().ParameterType == typeof(string)
+                              && method.GetParameters().Length == 2
+                              && method.GetParameters().First().ParameterType == typeof(string)
                 );
     }
 }

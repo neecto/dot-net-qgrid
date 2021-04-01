@@ -21,7 +21,7 @@ namespace QGrid.Tests.FilterTests
 
             Assert.NotEmpty(result);
             Assert.True(result.Count < Fixture.TotalItems);
-            Assert.All(result, x => Assert.Equal(1, x.IntNullableColumn));
+            Assert.All(result, x => Assert.Equal(5, x.IntNullableColumn));
             Assert.All(result, x => Assert.NotNull(x.IntNullableColumn));
         }
 
@@ -38,14 +38,14 @@ namespace QGrid.Tests.FilterTests
         [Fact]
         public void Int_Neq_HasResults()
         {
-            var filters = CreateQGridFilters(FilterConditionEnum.Neq, 20);
+            var filters = CreateQGridFilters(FilterConditionEnum.Neq, 8);
 
             var result = ExecuteQuery(filters);
 
             Assert.NotEmpty(result);
             Assert.True(result.Count < Fixture.TotalItems);
-            Assert.All(result, x => Assert.NotEqual(20, x.IntNullableColumn));
-            Assert.All(result, x => Assert.NotNull(x.IntNullableColumn));
+            Assert.All(result, x => Assert.NotEqual(8, x.IntNullableColumn));
+            Assert.Contains(result, x => x.IntNullableColumn == null);
         }
 
         [Fact]
@@ -55,7 +55,8 @@ namespace QGrid.Tests.FilterTests
 
             var result = ExecuteQuery(filters);
 
-            Assert.Empty(result);
+            Assert.NotEmpty(result);
+            Assert.All(result, x => Assert.Null(x.IntNullableColumn));
         }
 
         [Fact]
@@ -113,7 +114,7 @@ namespace QGrid.Tests.FilterTests
 
             Assert.NotEmpty(result);
             Assert.True(result.Count < Fixture.TotalItems);
-            Assert.All(result, x => Assert.True(x.IntNullableColumn <= 2));
+            Assert.All(result, x => Assert.True(x.IntNullableColumn <= 5));
             Assert.All(result, x => Assert.NotNull(x.IntNullableColumn));
         }
 

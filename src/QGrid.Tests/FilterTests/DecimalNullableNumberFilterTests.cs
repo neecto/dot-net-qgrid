@@ -21,7 +21,7 @@ namespace QGrid.Tests.FilterTests
 
             Assert.NotEmpty(result);
             Assert.True(result.Count < Fixture.TotalItems);
-            Assert.All(result, x => Assert.Equal(1, x.DecimalNullableColumn));
+            Assert.All(result, x => Assert.Equal(9.99m, x.DecimalNullableColumn));
             Assert.All(result, x => Assert.NotNull(x.DecimalNullableColumn));
         }
 
@@ -45,7 +45,7 @@ namespace QGrid.Tests.FilterTests
             Assert.NotEmpty(result);
             Assert.True(result.Count < Fixture.TotalItems);
             Assert.All(result, x => Assert.NotEqual(20.98m, x.DecimalNullableColumn));
-            Assert.All(result, x => Assert.NotNull(x.DecimalNullableColumn));
+            Assert.Contains(result, x => x.DecimalNullableColumn == null);
         }
 
         [Fact]
@@ -55,7 +55,8 @@ namespace QGrid.Tests.FilterTests
 
             var result = ExecuteQuery(filters);
 
-            Assert.Empty(result);
+            Assert.NotEmpty(result);
+            Assert.All(result, x => Assert.Null(x.DecimalNullableColumn));
         }
 
         [Fact]
