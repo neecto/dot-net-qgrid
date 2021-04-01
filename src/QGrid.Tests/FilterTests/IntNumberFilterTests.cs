@@ -42,9 +42,9 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void InvalidValue_ShouldThrowArgumentException()
+        public void Int_InvalidValue_ShouldThrowArgumentException()
         {
-            var filters = CreateQGridFilters(FilterConditionEnum.Eq, 1.05);
+            var filters = CreateQGridFilters(FilterConditionEnum.Eq, 1.05m);
 
             Assert.Throws<ArgumentException>(() => {
                 ExecuteQuery(filters);

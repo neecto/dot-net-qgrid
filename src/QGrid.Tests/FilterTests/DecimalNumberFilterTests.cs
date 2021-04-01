@@ -14,9 +14,9 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void InvalidValue_ShouldThrowArgumentException()
+        public void Decimal_InvalidValue_ShouldThrowArgumentException()
         {
-            var filters = CreateQGridFilters(FilterConditionEnum.Eq, "not a number");
+            var filters = CreateQGridFilters(FilterConditionEnum.Eq, "123;123");
 
             Assert.Throws<ArgumentException>(() => {
                 ExecuteQuery(filters);

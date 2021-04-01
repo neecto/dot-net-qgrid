@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using QGrid.Enums;
@@ -44,5 +45,33 @@ namespace QGrid.FilterExpressionProviders
                     );
             }
         }
+
+        protected override ConstantExpression GetFilterConstantExpression()
+        {
+            var propertyType = MemberPropertyInfo.PropertyType;
+            var filterValueString = Filter.Value.ToString();
+            var tryParseMethod = GetTryParseMethodInfo(propertyType);
+
+            var tryParseResult = (bool)tryParseMethod.Invoke(null, new object[] { filterValueString, null });
+
+            if (tryParseResult == false)
+            {
+                throw new ArgumentException(
+                    $"Failed to convert filter value \"{Filter.Value}\" to column type {propertyType}",
+                    nameof(Filter.Value)
+                );
+            }
+
+            var convertedValue = Convert.ChangeType(Filter.Value, propertyType);
+            return Expression.Constant(convertedValue);
+        }
+
+        private MethodInfo GetTryParseMethodInfo(Type propertyType)
+            => propertyType.GetMethods()
+                .Single(
+                    method => method.Name == "TryParse"
+                                && method.GetParameters().Length == 2
+                                && method.GetParameters().First().ParameterType == typeof(string)
+                );
     }
 }
