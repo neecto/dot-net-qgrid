@@ -23,13 +23,27 @@ namespace QGrid.Tests.FilterTests
             FilterConditionEnum condition,
             object value,
             FilterOperatorEnum op = FilterOperatorEnum.And
-        ) => new QGridFilters(op, _filterTestColumn, condition, value);
+        )
+        {
+            var filters = new List<QGridFilter>
+            {
+                new QGridFilter(_filterTestColumn, condition, value)
+            };
+
+            return new QGridFilters(op, filters);
+        }
 
         protected QGridFilters CreateQGridFilters(
             FilterConditionEnum condition,
             IEnumerable<object> values,
             FilterOperatorEnum op = FilterOperatorEnum.And
-        ) => new QGridFilters(op, _filterTestColumn, condition, values);
+        )
+        {
+            var filters = values
+                .Select(x => new QGridFilter(_filterTestColumn, condition, x))
+                .ToList();
+            return new QGridFilters(op, filters);
+        }
 
         protected List<TestItem> ExecuteQuery(QGridFilters filters) =>
             Fixture.TestQueryable

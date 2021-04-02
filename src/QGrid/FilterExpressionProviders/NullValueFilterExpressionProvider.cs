@@ -63,8 +63,8 @@ namespace QGrid.FilterExpressionProviders
             // otherwise, for Equal condition on not nullable columns we should always return FALSE
             // because Linq cannot translate equal expression for
             // not nullable column and null value
-            var stubConstantExpression = Expression.Constant(false);
-            return Expression.IsTrue(stubConstantExpression);
+            var stubConstantExpression = Expression.Constant(1);
+            return Expression.NotEqual(stubConstantExpression, stubConstantExpression);
         }
     }
 }
