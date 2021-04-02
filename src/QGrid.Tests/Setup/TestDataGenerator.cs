@@ -15,7 +15,8 @@ namespace QGrid.Tests.Setup
                     IntNullableColumn = null,
                     DecimalColumn = 1.99m,
                     DecimalNullableColumn = 9.99m,
-                    StringColumn = null
+                    StringColumn = null,
+                    BoolColumn = true
                 },
                 new TestItem
                 {
@@ -23,7 +24,8 @@ namespace QGrid.Tests.Setup
                     IntNullableColumn = 5,
                     DecimalColumn = 1.51m,
                     DecimalNullableColumn = null,
-                    StringColumn = "This is a string"
+                    StringColumn = "This is a string",
+                    BoolColumn = true
                 },
                 new TestItem
                 {
@@ -31,7 +33,8 @@ namespace QGrid.Tests.Setup
                     IntNullableColumn = 6,
                     DecimalColumn = 1.85m,
                     DecimalNullableColumn = null,
-                    StringColumn = "case invariant?"
+                    StringColumn = "case invariant?",
+                    BoolColumn = true
                 },
                 new TestItem
                 {
@@ -39,7 +42,8 @@ namespace QGrid.Tests.Setup
                     IntNullableColumn = null,
                     DecimalColumn = 20.50m,
                     DecimalNullableColumn = 21.55m,
-                    StringColumn = "Case Invariant?"
+                    StringColumn = "Case Invariant?",
+                    BoolColumn = false
                 },
                 new TestItem
                 {
@@ -47,7 +51,8 @@ namespace QGrid.Tests.Setup
                     IntNullableColumn = 8,
                     DecimalColumn = 20.99m,
                     DecimalNullableColumn = 20.98m,
-                    StringColumn = null
+                    StringColumn = null,
+                    BoolColumn = false
                 }
             };
 

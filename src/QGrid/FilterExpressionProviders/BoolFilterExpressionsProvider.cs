@@ -36,5 +36,20 @@ namespace QGrid.FilterExpressionProviders
                     );
             }
         }
+
+        protected override ConstantExpression GetFilterConstantExpression()
+        {
+            var isBool = bool.TryParse(Filter.Value.ToString(), out var boolValue);
+
+            if (!isBool)
+            {
+                throw new ArgumentException(
+                    $"Failed to convert filter value \"{Filter.Value}\" to column type Boolean",
+                    nameof(Filter.Value)
+                );
+            }
+
+            return Expression.Constant(boolValue);
+        }
     }
 }
