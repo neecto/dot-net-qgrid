@@ -13,5 +13,8 @@ namespace QGrid.Extensions
 
         public static bool IsNullableType(this Type type)
             => Nullable.GetUnderlyingType(type) != null;
+
+        public static bool IsBoolType(this Type type)
+            => type == typeof(bool) || type == typeof(bool?);
     }
 }

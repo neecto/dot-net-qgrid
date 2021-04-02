@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
+using QGrid.Extensions;
 using QGrid.Models;
 
 namespace QGrid.FilterExpressionProviders
@@ -42,7 +43,18 @@ namespace QGrid.FilterExpressionProviders
 
         protected virtual MemberExpression GetMemberExpression()
         {
-            return Expression.Property(EntityParameterExpression, MemberPropertyInfo);
+            var memberExpression = Expression.Property(EntityParameterExpression, MemberPropertyInfo);
+
+            // if filtered value is not nullable or is we are going to use NullValueFilterProvider
+            // use base member expression
+            if (!MemberPropertyInfo.PropertyType.IsNullableType() || Filter.Value == null)
+            {
+                return memberExpression;
+            }
+
+            // otherwise, get member expression for "Value" property of a nullable type
+            var valuePropertyInfo = MemberPropertyInfo.PropertyType.GetProperty("Value");
+            return Expression.Property(memberExpression, valuePropertyInfo);
         }
 
         protected virtual ConstantExpression GetFilterConstantExpression()

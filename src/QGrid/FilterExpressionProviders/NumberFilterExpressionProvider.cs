@@ -47,21 +47,6 @@ namespace QGrid.FilterExpressionProviders
             }
         }
 
-        protected override MemberExpression GetMemberExpression()
-        {
-            var memberExpression = base.GetMemberExpression();
-
-            // if filtered value is not nullable, use base member expression
-            if (!MemberPropertyInfo.PropertyType.IsNullableType())
-            {
-                return memberExpression;
-            }
-
-            // otherwise, get member expression for "Value" property of a nullable type
-            var valuePropertyInfo = MemberPropertyInfo.PropertyType.GetProperty("Value");
-            return Expression.Property(memberExpression, valuePropertyInfo);
-        }
-
         protected override ConstantExpression GetFilterConstantExpression()
         {
             var propertyType = MemberPropertyInfo.PropertyType.IsNullableType()

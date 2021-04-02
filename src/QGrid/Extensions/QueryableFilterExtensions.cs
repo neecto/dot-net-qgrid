@@ -91,7 +91,7 @@ namespace QGrid.Extensions
                     entityParameterExpression
                 );
             }
-            else if (propertyInfo.PropertyType == typeof(bool))
+            else if (propertyInfo.PropertyType.IsBoolType())
             {
                 filterExpressionProvider = new BoolFilterExpressionsProvider(
                     propertyInfo,
