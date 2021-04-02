@@ -38,6 +38,9 @@ namespace QGrid.Tests.Migrations
                     b.Property<DateTime?>("DateTimeNullableColumn")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTimeOffset>("DateTimeOffsetColumn")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<decimal>("DecimalColumn")
                         .HasColumnType("decimal(18,2)");
 

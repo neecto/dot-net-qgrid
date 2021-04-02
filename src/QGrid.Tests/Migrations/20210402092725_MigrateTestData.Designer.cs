@@ -10,7 +10,7 @@ using QGrid.Tests.Setup;
 namespace QGrid.Tests.Migrations
 {
     [DbContext(typeof(TestDbContext))]
-    [Migration("20210326115423_MigrateTestData")]
+    [Migration("20210402092725_MigrateTestData")]
     partial class MigrateTestData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,9 @@ namespace QGrid.Tests.Migrations
 
                     b.Property<DateTime?>("DateTimeNullableColumn")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTimeOffset>("DateTimeOffsetColumn")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<decimal>("DecimalColumn")
                         .HasColumnType("decimal(18,2)");
