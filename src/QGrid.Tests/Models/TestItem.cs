@@ -18,5 +18,6 @@ namespace QGrid.Tests.Models
         public TestEnum? EnumNullableColumn { get; set; }
         public Guid GuidColumn { get; set; }
         public Guid? GuidNullableColumn { get; set; }
+        public DateTimeOffset DateTimeOffsetColumn { get; set; }
     }
 }

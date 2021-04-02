@@ -12,7 +12,7 @@ namespace QGrid.Extensions
         public static IQueryable<T> ApplyFilters<T>(this IQueryable<T> query, QGridFilters filters)
             where T : class
         {
-            if (filters == null)
+            if (filters?.Filters == null)
                 return query;
 
             Expression resultExpression = null;
