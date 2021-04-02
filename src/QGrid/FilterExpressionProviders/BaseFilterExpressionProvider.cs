@@ -45,7 +45,7 @@ namespace QGrid.FilterExpressionProviders
         {
             var memberExpression = Expression.Property(EntityParameterExpression, MemberPropertyInfo);
 
-            // if filtered value is not nullable or is we are going to use NullValueFilterProvider
+            // if filtered value is not nullable or if we are going to use NullValueFilterProvider
             // use base member expression
             if (!MemberPropertyInfo.PropertyType.IsNullableType() || Filter.Value == null)
             {
@@ -53,6 +53,8 @@ namespace QGrid.FilterExpressionProviders
             }
 
             // otherwise, get member expression for "Value" property of a nullable type
+            // because expressions with nullable properties
+            // for binary operators with not null values cannot be correctly translated
             var valuePropertyInfo = MemberPropertyInfo.PropertyType.GetProperty("Value");
             return Expression.Property(memberExpression, valuePropertyInfo);
         }
