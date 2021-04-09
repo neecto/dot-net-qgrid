@@ -12,7 +12,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void NullableBool_Eq_True()
+        public void BoolNullable_Eq_True()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Eq, true);
 
@@ -24,7 +24,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void NullableBool_Eq_False()
+        public void BoolNullable_Eq_False()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Eq, false);
 
@@ -36,7 +36,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void NullableBool_Neq_True()
+        public void BoolNullable_Neq_True()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Neq, true);
 
@@ -49,7 +49,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void NullableBool_Neq_False()
+        public void BoolNullable_Neq_False()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Neq, false);
 

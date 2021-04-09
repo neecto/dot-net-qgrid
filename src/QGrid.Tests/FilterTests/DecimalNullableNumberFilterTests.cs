@@ -13,7 +13,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Eq_HasResults()
+        public void DecimalNullable_Eq_HasResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Eq, 9.99m);
 
@@ -26,7 +26,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Eq_NoResults()
+        public void DecimalNullable_Eq_NoResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Eq, 9.98m);
 
@@ -36,7 +36,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Neq_HasResults()
+        public void DecimalNullable_Neq_HasResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Neq, 20.98m);
 
@@ -49,7 +49,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Neq_NoResults()
+        public void DecimalNullable_Neq_NoResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Neq, new List<object> { 9.99m, 21.55m, 20.98m });
 
@@ -60,7 +60,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Lt_HasResults()
+        public void DecimalNullable_Lt_HasResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Lt, 20.98m);
 
@@ -73,7 +73,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Lt_NoResults()
+        public void DecimalNullable_Lt_NoResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Lt, 9.99m);
 
@@ -83,7 +83,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Gt_HasResults()
+        public void DecimalNullable_Gt_HasResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Gt, 20.90m);
 
@@ -96,7 +96,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Gt_NoResults()
+        public void DecimalNullable_Gt_NoResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Gt, 21.55m);
 
@@ -106,7 +106,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Lte_HasResults()
+        public void DecimalNullable_Lte_HasResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Lte, 9.99m);
 
@@ -119,7 +119,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Lte_NoResults()
+        public void DecimalNullable_Lte_NoResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Lte, 9.97m);
 
@@ -129,7 +129,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Gte_HasResults()
+        public void DecimalNullable_Gte_HasResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Gte, 21.55m);
 
@@ -142,7 +142,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Gte_NoResults()
+        public void DecimalNullable_Gte_NoResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Gte, 21.56m);
 

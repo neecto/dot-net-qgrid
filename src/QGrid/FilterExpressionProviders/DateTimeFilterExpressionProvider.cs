@@ -3,6 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using QGrid.Enums;
+using QGrid.Extensions;
 using QGrid.Models;
 
 namespace QGrid.FilterExpressionProviders
@@ -71,9 +72,16 @@ namespace QGrid.FilterExpressionProviders
                 return base.GetMemberExpression();
             }
 
+            var memberPropertyInfo = MemberPropertyInfo;
+
+            if (memberPropertyInfo.PropertyType.IsNullableType())
+            {
+                memberPropertyInfo = MemberPropertyInfo.PropertyType.GetProperty("Value");
+            }
+
             // if the condition is for Date part of the DateTime
             // we need to use DateTime.Date property
-            var datePropertyInfo = MemberPropertyInfo
+            var datePropertyInfo = memberPropertyInfo
                 .PropertyType
                 .GetProperties()
                 .FirstOrDefault(x => x.Name.Equals("Date"));

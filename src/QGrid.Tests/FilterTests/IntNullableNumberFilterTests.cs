@@ -13,7 +13,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Eq_HasResults()
+        public void IntNullable_Eq_HasResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Eq, 5);
 
@@ -26,7 +26,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Eq_NoResults()
+        public void IntNullable_Eq_NoResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Eq, 100);
 
@@ -36,7 +36,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Neq_HasResults()
+        public void IntNullable_Neq_HasResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Neq, 8);
 
@@ -49,7 +49,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Neq_NoResults()
+        public void IntNullable_Neq_NoResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Neq, new List<object> { 5, 6, 8 });
 
@@ -60,7 +60,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Lt_HasResults()
+        public void IntNullable_Lt_HasResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Lt, 6);
 
@@ -73,7 +73,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Lt_NoResults()
+        public void IntNullable_Lt_NoResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Lt, 5);
 
@@ -83,7 +83,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Gt_HasResults()
+        public void IntNullable_Gt_HasResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Gt, 6);
 
@@ -96,7 +96,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Gt_NoResults()
+        public void IntNullable_Gt_NoResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Gt, 8);
 
@@ -106,7 +106,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Lte_HasResults()
+        public void IntNullable_Lte_HasResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Lte, 5);
 
@@ -119,7 +119,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Lte_NoResults()
+        public void IntNullable_Lte_NoResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Lte, 4);
 
@@ -129,7 +129,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Gte_HasResults()
+        public void IntNullable_Gte_HasResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Gte, 8);
 
@@ -142,7 +142,7 @@ namespace QGrid.Tests.FilterTests
         }
 
         [Fact]
-        public void Int_Gte_NoResults()
+        public void IntNullable_Gte_NoResults()
         {
             var filters = CreateQGridFilters(FilterConditionEnum.Gte, 9);
 
