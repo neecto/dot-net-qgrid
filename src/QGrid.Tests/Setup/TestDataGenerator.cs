@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using QGrid.Tests.Models;
 
 namespace QGrid.Tests.Setup
@@ -17,7 +18,8 @@ namespace QGrid.Tests.Setup
                     DecimalNullableColumn = 9.99m,
                     StringColumn = null,
                     BoolColumn = true,
-                    BoolNullableColumn = null
+                    BoolNullableColumn = null,
+                    DateTimeColumn = new DateTime(2021, 1, 5, 12, 12, 54)
                 },
                 new TestItem
                 {
@@ -27,7 +29,8 @@ namespace QGrid.Tests.Setup
                     DecimalNullableColumn = null,
                     StringColumn = "This is a string",
                     BoolColumn = true,
-                    BoolNullableColumn = false
+                    BoolNullableColumn = false,
+                    DateTimeColumn = new DateTime(2021, 1, 5, 12, 12, 56)
                 },
                 new TestItem
                 {
@@ -37,7 +40,8 @@ namespace QGrid.Tests.Setup
                     DecimalNullableColumn = null,
                     StringColumn = "case invariant?",
                     BoolColumn = true,
-                    BoolNullableColumn = true
+                    BoolNullableColumn = true,
+                    DateTimeColumn = new DateTime(2021, 1, 5, 18, 0, 0)
                 },
                 new TestItem
                 {
@@ -47,7 +51,8 @@ namespace QGrid.Tests.Setup
                     DecimalNullableColumn = 21.55m,
                     StringColumn = "Case Invariant?",
                     BoolColumn = false,
-                    BoolNullableColumn = true
+                    BoolNullableColumn = true,
+                    DateTimeColumn = new DateTime(2021, 4, 5, 14, 10, 53)
                 },
                 new TestItem
                 {
@@ -57,7 +62,8 @@ namespace QGrid.Tests.Setup
                     DecimalNullableColumn = 20.98m,
                     StringColumn = null,
                     BoolColumn = false,
-                    BoolNullableColumn = null
+                    BoolNullableColumn = null,
+                    DateTimeColumn = new DateTime(2021, 4, 5, 15, 15, 15)
                 }
             };
 
