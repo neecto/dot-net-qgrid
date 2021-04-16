@@ -28,5 +28,10 @@ namespace QGrid.Extensions
 
             return nullableUnderlyingType.IsEnum;
         }
+
+        public static Type GetUnderlyingTypeIfNullable(this Type type)
+            => type.IsNullableType()
+                ? Nullable.GetUnderlyingType(type)
+                : type;
     }
 }

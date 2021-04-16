@@ -49,9 +49,7 @@ namespace QGrid.FilterExpressionProviders
 
         protected override ConstantExpression GetFilterConstantExpression()
         {
-            var propertyType = MemberPropertyInfo.PropertyType.IsNullableType()
-                ? Nullable.GetUnderlyingType(MemberPropertyInfo.PropertyType)
-                : MemberPropertyInfo.PropertyType;
+            var propertyType = MemberPropertyInfo.PropertyType.GetUnderlyingTypeIfNullable();
             var filterValueString = Filter.Value.ToString();
             var tryParseMethod = GetTryParseMethodInfo(propertyType);
 

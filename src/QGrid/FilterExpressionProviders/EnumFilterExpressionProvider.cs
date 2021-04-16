@@ -44,9 +44,7 @@ namespace QGrid.FilterExpressionProviders
 
         protected override ConstantExpression GetFilterConstantExpression()
         {
-            var propertyType = MemberPropertyInfo.PropertyType.IsNullableType()
-                ? Nullable.GetUnderlyingType(MemberPropertyInfo.PropertyType)
-                : MemberPropertyInfo.PropertyType;
+            var propertyType = MemberPropertyInfo.PropertyType.GetUnderlyingTypeIfNullable();
             var filterValue = Filter.Value;
 
             if (Filter.Condition == FilterConditionEnum.Oneof || Filter.Condition == FilterConditionEnum.Notoneof)
@@ -110,9 +108,7 @@ namespace QGrid.FilterExpressionProviders
                 .GetMethods()
                 .First(m => m.Name == "Contains" && m.GetParameters().Length == 2);
 
-            var propertyType = MemberPropertyInfo.PropertyType.IsNullableType()
-                ? Nullable.GetUnderlyingType(MemberPropertyInfo.PropertyType)
-                : MemberPropertyInfo.PropertyType;
+            var propertyType = MemberPropertyInfo.PropertyType.GetUnderlyingTypeIfNullable();
 
             containsMethodInfo = containsMethodInfo.MakeGenericMethod(propertyType);
 
