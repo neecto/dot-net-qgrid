@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using QGrid.Enums;
+using QGrid.Extensions;
 using QGrid.Models;
 
 namespace QGrid.FilterExpressionProviders
@@ -43,7 +44,9 @@ namespace QGrid.FilterExpressionProviders
 
         protected override ConstantExpression GetFilterConstantExpression()
         {
-            var propertyType = MemberPropertyInfo.PropertyType;
+            var propertyType = MemberPropertyInfo.PropertyType.IsNullableType()
+                ? Nullable.GetUnderlyingType(MemberPropertyInfo.PropertyType)
+                : MemberPropertyInfo.PropertyType;
             var filterValue = Filter.Value;
 
             if (Filter.Condition == FilterConditionEnum.Oneof || Filter.Condition == FilterConditionEnum.Notoneof)
@@ -77,7 +80,7 @@ namespace QGrid.FilterExpressionProviders
             }
 
             var filterValues = filterValue as IEnumerable;
-            var genericListType = typeof(List<>).MakeGenericType(MemberPropertyInfo.PropertyType);
+            var genericListType = typeof(List<>).MakeGenericType(propertyType);
             var convertedFilterValueList = (IList)Activator.CreateInstance(genericListType);
 
             foreach (var value in filterValues)
@@ -107,7 +110,11 @@ namespace QGrid.FilterExpressionProviders
                 .GetMethods()
                 .First(m => m.Name == "Contains" && m.GetParameters().Length == 2);
 
-            containsMethodInfo = containsMethodInfo.MakeGenericMethod(MemberPropertyInfo.PropertyType);
+            var propertyType = MemberPropertyInfo.PropertyType.IsNullableType()
+                ? Nullable.GetUnderlyingType(MemberPropertyInfo.PropertyType)
+                : MemberPropertyInfo.PropertyType;
+
+            containsMethodInfo = containsMethodInfo.MakeGenericMethod(propertyType);
 
             return Expression.Call(null, containsMethodInfo, constantExpression, memberExpression);
         }

@@ -210,6 +210,7 @@ namespace QGrid.Tests.FilterTests
             Assert.NotEmpty(result);
             Assert.True(result.Count < Fixture.TotalItems);
             Assert.All(result, x => Assert.NotEqual(TestEnum.Second, x.EnumColumn));
+            Assert.All(result, x => Assert.NotEqual(TestEnum.Nineth, x.EnumColumn));
         }
 
         [Fact]
@@ -231,7 +232,9 @@ namespace QGrid.Tests.FilterTests
 
             Assert.NotEmpty(result);
             Assert.True(result.Count < Fixture.TotalItems);
-            Assert.All(result, x => Assert.Equal(TestEnum.Second, x.EnumColumn));
+            Assert.All(result, x => Assert.NotEqual(TestEnum.First, x.EnumColumn));
+            Assert.All(result, x => Assert.NotEqual(TestEnum.Third, x.EnumColumn));
+            Assert.All(result, x => Assert.NotEqual(TestEnum.Tenth, x.EnumColumn));
         }
 
         [Fact]

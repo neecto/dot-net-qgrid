@@ -21,7 +21,8 @@ namespace QGrid.Tests.Setup
                     BoolNullableColumn = null,
                     DateTimeColumn = new DateTime(2021, 1, 5, 12, 12, 54),
                     DateTimeNullableColumn = null,
-                    EnumColumn = TestEnum.First
+                    EnumColumn = TestEnum.First,
+                    EnumNullableColumn = null
                 },
                 new TestItem
                 {
@@ -34,7 +35,8 @@ namespace QGrid.Tests.Setup
                     BoolNullableColumn = false,
                     DateTimeColumn = new DateTime(2021, 1, 5, 12, 12, 56),
                     DateTimeNullableColumn = new DateTime(2021, 1, 1, 12, 12, 12),
-                    EnumColumn = TestEnum.Second
+                    EnumColumn = TestEnum.Second,
+                    EnumNullableColumn = TestEnum.Nineth
                 },
                 new TestItem
                 {
@@ -47,7 +49,8 @@ namespace QGrid.Tests.Setup
                     BoolNullableColumn = true,
                     DateTimeColumn = new DateTime(2021, 1, 5, 18, 0, 0),
                     DateTimeNullableColumn = new DateTime(2021, 1, 1, 13, 13, 13),
-                    EnumColumn = TestEnum.Third
+                    EnumColumn = TestEnum.Third,
+                    EnumNullableColumn = TestEnum.Nineth
                 },
                 new TestItem
                 {
@@ -60,7 +63,8 @@ namespace QGrid.Tests.Setup
                     BoolNullableColumn = true,
                     DateTimeColumn = new DateTime(2021, 4, 5, 14, 10, 53),
                     DateTimeNullableColumn = null,
-                    EnumColumn = TestEnum.First
+                    EnumColumn = TestEnum.First,
+                    EnumNullableColumn = null
                 },
                 new TestItem
                 {
@@ -73,7 +77,8 @@ namespace QGrid.Tests.Setup
                     BoolNullableColumn = null,
                     DateTimeColumn = new DateTime(2021, 4, 5, 15, 15, 15),
                     DateTimeNullableColumn = new DateTime(2021, 1, 2, 11, 11, 11),
-                    EnumColumn = TestEnum.Second
+                    EnumColumn = TestEnum.Second,
+                    EnumNullableColumn = TestEnum.Tenth
                 }
             };
 

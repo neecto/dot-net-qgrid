@@ -83,7 +83,7 @@ namespace QGrid.Extensions
                     entityParameterExpression
                 );
             }
-            else if (propertyInfo.PropertyType.IsEnum)
+            else if (propertyInfo.PropertyType.IsEnum())
             {
                 filterExpressionProvider = new EnumFilterExpressionProvider(
                     propertyInfo,
