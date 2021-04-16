@@ -35,7 +35,7 @@ namespace QGrid.Tests.FilterTests
 
         protected QGridFilters CreateQGridFilters(
             FilterConditionEnum condition,
-            IEnumerable<object> values,
+            List<object> values,
             FilterOperatorEnum op = FilterOperatorEnum.And
         )
         {

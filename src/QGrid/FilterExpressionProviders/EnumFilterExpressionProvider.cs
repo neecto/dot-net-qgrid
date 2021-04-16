@@ -53,7 +53,7 @@ namespace QGrid.FilterExpressionProviders
 
             try
             {
-                var enumValue = Enum.Parse(propertyType, filterValue.ToString(), true);
+                var enumValue = GetEnumValue(propertyType, filterValue);
                 return Expression.Constant(enumValue);
             }
             catch (Exception e)
@@ -84,7 +84,9 @@ namespace QGrid.FilterExpressionProviders
             {
                 try
                 {
-                    convertedFilterValueList.Add(Enum.Parse(propertyType, value.ToString(), true));
+                    var enumValue = GetEnumValue(propertyType, value.ToString());
+
+                    convertedFilterValueList.Add(enumValue);
                 }
                 catch (Exception e)
                 {
@@ -108,6 +110,22 @@ namespace QGrid.FilterExpressionProviders
             containsMethodInfo = containsMethodInfo.MakeGenericMethod(MemberPropertyInfo.PropertyType);
 
             return Expression.Call(null, containsMethodInfo, constantExpression, memberExpression);
+        }
+
+        private object GetEnumValue(Type enumType, object value)
+        {
+            var enumValue = Enum.Parse(enumType, value.ToString(), true);
+
+            // MSDN says that Enum.Parse would throw an OverflowException in case parsed value
+            // is outside of Enum range, but for some reason it doesn't happen
+            // https://docs.microsoft.com/en-us/dotnet/api/system.enum.parse
+            // so we call IsDefined to check this manually
+            if (!Enum.IsDefined(enumType, enumValue))
+            {
+                throw new OverflowException();
+            }
+
+            return enumValue;
         }
     }
 }

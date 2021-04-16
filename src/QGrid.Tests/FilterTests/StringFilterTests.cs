@@ -102,7 +102,7 @@ namespace QGrid.Tests.FilterTests
         [Fact]
         public void String_Neq_NoResults()
         {
-            var filters = CreateQGridFilters(FilterConditionEnum.Neq, new[] { "This is a string", "case invariant?" });
+            var filters = CreateQGridFilters(FilterConditionEnum.Neq, new List<object> { "This is a string", "case invariant?" });
 
             var result = ExecuteQuery(filters);
 
@@ -148,7 +148,7 @@ namespace QGrid.Tests.FilterTests
         [Fact]
         public void String_DoesNotContain_NoResults()
         {
-            var filters = CreateQGridFilters(FilterConditionEnum.Doesnotcontain, new[] { "This is a string", "case invariant?" });
+            var filters = CreateQGridFilters(FilterConditionEnum.Doesnotcontain, new List<object> { "This is a string", "case invariant?" });
 
             var result = ExecuteQuery(filters);
 
