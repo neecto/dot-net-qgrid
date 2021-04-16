@@ -79,6 +79,20 @@ namespace QGrid.Tests.Setup
                     DateTimeNullableColumn = new DateTime(2021, 1, 2, 11, 11, 11),
                     EnumColumn = TestEnum.Second,
                     EnumNullableColumn = TestEnum.Tenth
+                },
+                new TestItem
+                {
+                    IntColumn = 20,
+                    IntNullableColumn = null,
+                    DecimalColumn = 20.99m,
+                    DecimalNullableColumn = 20.98m,
+                    StringColumn = null,
+                    BoolColumn = true,
+                    BoolNullableColumn = null,
+                    DateTimeColumn = new DateTime(2021, 4, 5, 15, 15, 15),
+                    DateTimeNullableColumn = new DateTime(2021, 1, 2, 11, 11, 11),
+                    EnumColumn = TestEnum.Second,
+                    EnumNullableColumn = TestEnum.Tenth
                 }
             };
 
