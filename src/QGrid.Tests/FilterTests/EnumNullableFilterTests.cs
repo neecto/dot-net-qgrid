@@ -7,7 +7,7 @@ using Xunit;
 namespace QGrid.Tests.FilterTests
 {
     [Collection("Database collection")]
-    public class EnumNullableFilterTests : BaseFilterTests
+    public class EnumNullableFilterTests : BaseFilterProviderTests
     {
         public EnumNullableFilterTests(DatabaseFixture fixture) : base(fixture, "EnumNullableColumn")
         {

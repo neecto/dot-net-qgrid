@@ -7,7 +7,7 @@ using Xunit;
 namespace QGrid.Tests.FilterTests
 {
     [Collection("Database collection")]
-    public class IntNumberFilterTests : BaseFilterTests
+    public class IntNumberFilterTests : BaseFilterProviderTests
     {
         public IntNumberFilterTests(DatabaseFixture fixture) : base(fixture, "IntColumn")
         {

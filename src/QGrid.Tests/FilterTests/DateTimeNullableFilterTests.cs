@@ -7,7 +7,7 @@ using Xunit;
 namespace QGrid.Tests.FilterTests
 {
     [Collection("Database collection")]
-    public class DateTimeNullableFilterTests : BaseFilterTests
+    public class DateTimeNullableFilterTests : BaseFilterProviderTests
     {
         public DateTimeNullableFilterTests(DatabaseFixture fixture) : base(fixture, "DateTimeNullableColumn")
         {

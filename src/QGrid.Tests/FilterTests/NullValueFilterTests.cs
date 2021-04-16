@@ -8,7 +8,7 @@ using Xunit;
 namespace QGrid.Tests.FilterTests
 {
     [Collection("Database collection")]
-    public class NullValueFilterTests : BaseFilterTests
+    public class NullValueFilterTests : BaseFilterProviderTests
     {
         public NullValueFilterTests(DatabaseFixture fixture) : base(fixture, "IntNullableColumn")
         {

@@ -7,7 +7,7 @@ using Xunit;
 namespace QGrid.Tests.FilterTests
 {
     [Collection("Database collection")]
-    public class DecimalNumberFilterTests : BaseFilterTests
+    public class DecimalNumberFilterTests : BaseFilterProviderTests
     {
         public DecimalNumberFilterTests(DatabaseFixture fixture) : base(fixture, "DecimalColumn")
         {

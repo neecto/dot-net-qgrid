@@ -7,7 +7,7 @@ using Xunit;
 namespace QGrid.Tests.FilterTests
 {
     [Collection("Database collection")]
-    public class DateTimeFilterTests : BaseFilterTests
+    public class DateTimeFilterTests : BaseFilterProviderTests
     {
         public DateTimeFilterTests(DatabaseFixture fixture) : base(fixture, "DateTimeColumn")
         {

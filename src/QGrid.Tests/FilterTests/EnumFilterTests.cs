@@ -8,7 +8,7 @@ using Xunit;
 namespace QGrid.Tests.FilterTests
 {
     [Collection("Database collection")]
-    public class EnumFilterTests : BaseFilterTests
+    public class EnumFilterTests : BaseFilterProviderTests
     {
         public EnumFilterTests(DatabaseFixture fixture) : base(fixture, "EnumColumn")
         {

@@ -5,7 +5,7 @@ using Xunit;
 namespace QGrid.Tests.FilterTests
 {
     [Collection("Database collection")]
-    public class BoolNullableFilterTests : BaseFilterTests
+    public class BoolNullableFilterTests : BaseFilterProviderTests
     {
         public BoolNullableFilterTests(DatabaseFixture fixture) : base(fixture, "BoolNullableColumn")
         {
