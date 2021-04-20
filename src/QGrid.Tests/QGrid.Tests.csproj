@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QGrid.EntityFrameworkCore\QGrid.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\QGrid\QGrid.csproj" />
   </ItemGroup>
 
