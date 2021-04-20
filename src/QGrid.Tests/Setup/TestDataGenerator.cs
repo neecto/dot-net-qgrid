@@ -6,7 +6,7 @@ namespace QGrid.Tests.Setup
 {
     public static class TestDataGenerator
     {
-        public static List<TestItem> CreateTestItems()
+        public static List<TestItem> GetTestRecords()
         {
             var list = new List<TestItem>
             {

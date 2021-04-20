@@ -19,7 +19,7 @@ namespace QGrid.Tests.Fixtures
             _dbContext = new TestDbContext();
             SetupDatabase();
 
-            var list = TestDataGenerator.CreateTestItems();
+            var list = TestDataGenerator.GetTestRecords();
 
             _dbContext.TestItems.RemoveRange(_dbContext.TestItems);
             _dbContext.TestItems.AddRange(list);

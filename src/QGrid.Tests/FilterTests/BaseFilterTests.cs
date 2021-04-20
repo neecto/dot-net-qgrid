@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using QGrid.Enums;
 using QGrid.Extensions;
 using QGrid.Models;
 using QGrid.Tests.Fixtures;

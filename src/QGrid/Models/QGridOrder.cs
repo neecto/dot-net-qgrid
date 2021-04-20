@@ -6,5 +6,11 @@ namespace QGrid.Models
     {
         public string Column { get; set; }
         public OrderTypeEnum Type { get; set; }
+
+        public QGridOrder(string column, OrderTypeEnum type = OrderTypeEnum.Asc)
+        {
+            Column = column;
+            Type = type;
+        }
     }
 }
