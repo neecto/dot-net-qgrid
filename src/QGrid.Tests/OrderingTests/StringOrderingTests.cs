@@ -59,12 +59,20 @@ namespace QGrid.Tests.OrderingTests
                     ? null
                     : result[i + 1];
 
-                if (nextItem == null)
+                if (nextItem == null || currentItem.StringColumn == null || nextItem.StringColumn == null)
                 {
                     break;
                 }
 
-                int comparison = string.Compare(currentItem.StringColumn, nextItem.StringColumn, StringComparison.OrdinalIgnoreCase);
+                var comparisonType = _fixture.IsCaseSensitive
+                    ? StringComparison.InvariantCulture
+                    : StringComparison.InvariantCultureIgnoreCase;
+
+                var comparison = string.Compare(
+                    currentItem.StringColumn,
+                    nextItem.StringColumn,
+                    comparisonType
+                );
                 if (orderType == OrderTypeEnum.Asc)
                 {
                     Assert.True(comparison <= 0);

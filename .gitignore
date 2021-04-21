@@ -3,3 +3,4 @@ src/*/bin
 src/*/obj
 test-results
 *.user
+src/obj

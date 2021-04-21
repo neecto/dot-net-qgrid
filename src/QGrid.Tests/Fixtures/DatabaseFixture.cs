@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Data.Common;
 using System.Linq;
 using System.Threading;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using QGrid.Tests.Db.Postgres.Migrations;
+using QGrid.Tests.Db.SqlServer.Migrations;
 using QGrid.Tests.Models;
 using QGrid.Tests.Setup;
 
@@ -11,7 +13,8 @@ namespace QGrid.Tests.Fixtures
     public class DatabaseFixture : IDisposable
     {
         public IQueryable<TestItem> TestQueryable { get; }
-        public int TotalItems { get; set; }
+        public int TotalItems { get; }
+        public bool IsCaseSensitive { get; }
         private readonly TestDbContext _dbContext;
 
         public DatabaseFixture()
@@ -27,6 +30,7 @@ namespace QGrid.Tests.Fixtures
 
             TestQueryable = _dbContext.TestItems;
             TotalItems = TestQueryable.Count();
+            IsCaseSensitive = Environment.GetEnvironmentVariable("DBSERVER") == "POSTGRES";
         }
 
         public void Dispose()
@@ -42,19 +46,39 @@ namespace QGrid.Tests.Fixtures
             {
                 try
                 {
-                    if (_dbContext.Database.GetPendingMigrations().Any())
-                    {
-                        _dbContext.Database.Migrate();
-                    }
-
+                    ApplyMigrationScript();
                     dbReady = true;
                 }
-                catch (SqlException e)
+                catch (DbException e)
                 {
-                    Console.WriteLine($"Failed to migrate db with exception: {e.Message}. Will try again in 10 seconds");
+                    Console.WriteLine("Failed to migrate db with exception. Will try again in 10 seconds");
+                    Console.WriteLine(e.ToString());
+                    Console.WriteLine(e.InnerException?.ToString());
+                    Console.WriteLine(e.InnerException?.InnerException?.ToString());
                     Thread.Sleep(10 * 1000);
                 }
             }
+        }
+
+        private void ApplyMigrationScript()
+        {
+            var dbServer = Environment.GetEnvironmentVariable("DBSERVER");
+            string migrationSql;
+
+            switch (dbServer)
+            {
+                case "MSSQL":
+                    migrationSql = SqlServerMigrationScript.GetMigrationScript();
+                    break;
+                case "POSTGRES":
+                    migrationSql = PostgresMigrationScript.GetMigrationScript();
+                    break;
+                default:
+                    migrationSql = SqlServerMigrationScript.GetMigrationScript();
+                    break;
+            }
+
+            _dbContext.Database.ExecuteSqlRaw(migrationSql);
         }
     }
 }

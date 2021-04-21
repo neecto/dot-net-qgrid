@@ -103,8 +103,8 @@ namespace QGrid.Tests.OrderingTests
                 if (currentItem.IntColumn == nextItem.IntColumn)
                 {
                     Assert.True(
-                        currentItem.BoolNullableColumn == null && nextItem.BoolNullableColumn == null ||
-                        currentItem.BoolNullableColumn == null && nextItem.BoolNullableColumn != null ||
+                        currentItem.BoolNullableColumn == null ||
+                        nextItem.BoolNullableColumn == null ||
                         currentItem.BoolNullableColumn == false && nextItem.BoolNullableColumn == false ||
                         currentItem.BoolNullableColumn == false && nextItem.BoolNullableColumn == true
                     );
@@ -154,8 +154,8 @@ namespace QGrid.Tests.OrderingTests
                     {
                         Assert.True(
                             currentItem.EnumNullableColumn >= nextItem.EnumNullableColumn ||
-                            currentItem.EnumNullableColumn != null && nextItem.EnumNullableColumn == null ||
-                            currentItem.EnumNullableColumn == null && nextItem.EnumNullableColumn == null
+                            currentItem.EnumNullableColumn == null ||
+                            nextItem.EnumNullableColumn == null
                         );
                     }
                 }

@@ -1,7 +1,14 @@
 version: '3.4'
 
 services:    
-  qgrid.test:
+  qgrid.sqlserver.test:
+    image: qgrid.test
+    build:
+        context: .
+        dockerfile: Dockerfile
+        target: test
+        
+  qgrid.postgres.test:
     image: qgrid.test
     build:
         context: .

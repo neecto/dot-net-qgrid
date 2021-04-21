@@ -1,15 +1,26 @@
 version: '3.4'
 
 services:
-  qgrid.test:
+  qgrid.sqlserver.test:
     environment:
       - DBSERVER=MSSQL
-      - CONNECTION_STRING=Server=sqlserver;Database=qgrid;User=sa;Password=123QGridTest!@#;
+      - CONNECTION_STRING=Server=sqlserver;Database=master;User=sa;Password=123QGridTest!@#;
     entrypoint: dotnet test -c Release --no-build --logger "trx;LogFileName=SqlServerTests.trx" --results-directory /var/temp/test-results QGrid.Tests.csproj
     volumes:
       - ../test-results:/var/temp/test-results
     depends_on:
       - sqlserver
+      
+  qgrid.postgres.test:
+    environment:
+      - DBSERVER=POSTGRES
+      - CONNECTION_STRING=Server=postgres;Port=5432;User Id=postgres;Password=postgres;Database=postgres;
+    entrypoint: dotnet test -c Release --no-build --logger "trx;LogFileName=PostgreSQLTests.trx" --results-directory /var/temp/test-results QGrid.Tests.csproj
+    volumes:
+      - ../test-results:/var/temp/test-results
+    depends_on:
+      - postgres
+        
   sqlserver:
     image: "mcr.microsoft.com/mssql/server"
     ports:
@@ -17,3 +28,14 @@ services:
     environment:
       SA_PASSWORD: "123QGridTest!@#"
       ACCEPT_EULA: "Y"
+      
+  postgres:
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/pgdata
+    restart: always

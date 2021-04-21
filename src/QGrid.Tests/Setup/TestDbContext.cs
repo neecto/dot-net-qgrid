@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using QGrid.Tests.Models;
 
@@ -17,32 +16,20 @@ namespace QGrid.Tests.Setup
             Console.WriteLine($"Setting up EF DB context for {dbServer}.");
             Console.WriteLine($"using connection string: {connectionString}");
 
-            if (dbServer == "MSSQL")
+            switch (dbServer)
             {
-                ConfigureMsSql(optionsBuilder, connectionString);
+                case "MSSQL":
+                    optionsBuilder.ConfigureSqlServer(connectionString);
+                    break;
+                case "POSTGRES":
+                    optionsBuilder.ConfigurePostgres(connectionString);
+                    break;
+                default:
+                    connectionString = "Server=.;Database=qgrid;User=sa;Password=123QGridTest!@#;";
+                    Console.WriteLine("Failed to find DB configuration in environment variables, falling back to hard-coded config");
+                    optionsBuilder.ConfigureSqlServer(connectionString);
+                    break;
             }
-            else
-            {
-                Console.WriteLine("Failed to find DB configuration in environment variables, falling back to hard-coded config");
-                optionsBuilder
-                    .UseSqlServer(
-                        "Server=.;Database=qgrid;User=sa;Password=123QGridTest!@#;",
-                        x => {
-                            x.MigrationsAssembly(typeof(TestDbContext).GetTypeInfo().Assembly.GetName().Name);
-                        }
-                    );
-            }
-        }
-
-        private void ConfigureMsSql(DbContextOptionsBuilder optionsBuilder, string connectionString)
-        {
-            optionsBuilder
-                .UseSqlServer(
-                    connectionString,
-                    x => {
-                        x.MigrationsAssembly(typeof(TestDbContext).GetTypeInfo().Assembly.GetName().Name);
-                    }
-                );
         }
     }
 }

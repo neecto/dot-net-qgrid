@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QGrid.EntityFrameworkCore",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BC0BE383-C3F5-48D2-A9FC-4E41DDE5DA25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QGrid.Tests", "QGrid.Tests\QGrid.Tests.csproj", "{DD6820C3-A39E-490A-AC54-0E12BB8B9D65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QGrid.Tests", "QGrid.Tests\QGrid.Tests.csproj", "{DD6820C3-A39E-490A-AC54-0E12BB8B9D65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

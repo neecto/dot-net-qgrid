@@ -125,17 +125,17 @@ namespace QGrid.Tests.OrderingTests
                 if (orderType == OrderTypeEnum.Asc)
                 {
                     Assert.True(
-                        currentItem.DateTimeNullableColumn == null && nextItem.DateTimeNullableColumn == null ||
-                        currentItem.DateTimeNullableColumn == null && nextItem.DateTimeNullableColumn != null ||
+                        currentItem.DateTimeNullableColumn == null ||
+                        nextItem.DateTimeNullableColumn == null ||
                         currentItem.DateTimeNullableColumn <= nextItem.DateTimeNullableColumn
                     );
                 }
                 else
                 {
                     Assert.True(
-                        currentItem.DateTimeNullableColumn >= nextItem.DateTimeNullableColumn ||
-                        currentItem.DateTimeNullableColumn != null && nextItem.DateTimeNullableColumn == null ||
-                        currentItem.DateTimeNullableColumn == null && nextItem.DateTimeNullableColumn == null
+                        currentItem.DateTimeNullableColumn == null ||
+                        nextItem.DateTimeNullableColumn == null ||
+                        currentItem.DateTimeNullableColumn >= nextItem.DateTimeNullableColumn
                     );
                 }
             }

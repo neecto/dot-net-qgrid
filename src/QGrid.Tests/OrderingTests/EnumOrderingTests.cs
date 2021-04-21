@@ -125,17 +125,17 @@ namespace QGrid.Tests.OrderingTests
                 if (orderType == OrderTypeEnum.Asc)
                 {
                     Assert.True(
-                        currentItem.EnumNullableColumn == null && nextItem.EnumNullableColumn == null ||
-                        currentItem.EnumNullableColumn == null && nextItem.EnumNullableColumn != null ||
+                        currentItem.EnumNullableColumn == null ||
+                        nextItem.EnumNullableColumn == null ||
                         currentItem.EnumNullableColumn <= nextItem.EnumNullableColumn
                     );
                 }
                 else
                 {
                     Assert.True(
-                        currentItem.EnumNullableColumn >= nextItem.EnumNullableColumn ||
-                        currentItem.EnumNullableColumn != null && nextItem.EnumNullableColumn == null ||
-                        currentItem.EnumNullableColumn == null && nextItem.EnumNullableColumn == null
+                        currentItem.EnumNullableColumn == null ||
+                        nextItem.EnumNullableColumn == null ||
+                        currentItem.EnumNullableColumn >= nextItem.EnumNullableColumn
                     );
                 }
             }

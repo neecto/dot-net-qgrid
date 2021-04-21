@@ -129,8 +129,8 @@ namespace QGrid.Tests.OrderingTests
                 if (orderType == OrderTypeEnum.Asc)
                 {
                     Assert.True(
-                        currentItem.BoolNullableColumn == null && nextItem.BoolNullableColumn == null ||
-                        currentItem.BoolNullableColumn == null && nextItem.BoolNullableColumn == false ||
+                        currentItem.BoolNullableColumn == null ||
+                        nextItem.BoolNullableColumn == null ||
                         currentItem.BoolNullableColumn == false && nextItem.BoolNullableColumn == false ||
                         currentItem.BoolNullableColumn == false && nextItem.BoolNullableColumn == true ||
                         currentItem.BoolNullableColumn == true && nextItem.BoolNullableColumn == true
@@ -139,11 +139,11 @@ namespace QGrid.Tests.OrderingTests
                 else
                 {
                     Assert.True(
+                        currentItem.BoolNullableColumn == null ||
+                        nextItem.BoolNullableColumn == null ||
                         currentItem.BoolNullableColumn == true && nextItem.BoolNullableColumn == true ||
                         currentItem.BoolNullableColumn == true && nextItem.BoolNullableColumn == false ||
-                        currentItem.BoolNullableColumn == false && nextItem.BoolNullableColumn == false ||
-                        currentItem.BoolNullableColumn == false && nextItem.BoolNullableColumn == null ||
-                        currentItem.BoolNullableColumn == null && nextItem.BoolNullableColumn == null
+                        currentItem.BoolNullableColumn == false && nextItem.BoolNullableColumn == false
                     );
                 }
             }

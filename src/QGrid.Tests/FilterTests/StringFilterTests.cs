@@ -70,10 +70,17 @@ namespace QGrid.Tests.FilterTests
 
             var result = ExecuteQuery(filters);
 
-            Assert.NotEmpty(result);
-            Assert.True(result.Count > 1);
-            Assert.True(result.Count < Fixture.TotalItems);
-            Assert.All(result, x => Assert.Equal("case invariant?".ToLowerInvariant(), x.StringColumn.ToLowerInvariant()));
+            if (Fixture.IsCaseSensitive)
+            {
+                Assert.Empty(result);
+            }
+            else
+            {
+                Assert.NotEmpty(result);
+                Assert.True(result.Count > 1);
+                Assert.True(result.Count < Fixture.TotalItems);
+                Assert.All(result, x => Assert.Equal("case invariant?".ToLowerInvariant(), x.StringColumn.ToLowerInvariant()));
+            }
         }
 
         [Fact]
@@ -102,7 +109,11 @@ namespace QGrid.Tests.FilterTests
         [Fact]
         public void String_Neq_NoResults()
         {
-            var filters = CreateQGridFilters(FilterConditionEnum.Neq, new List<object> { "This is a string", "case invariant?" });
+            var values = Fixture.IsCaseSensitive
+                ? new List<object> { "This is a string", "case invariant?", "Case Invariant?" }
+                : new List<object> { "This is a string", "case invariant?" };
+
+            var filters = CreateQGridFilters(FilterConditionEnum.Neq, values);
 
             var result = ExecuteQuery(filters);
 
@@ -148,7 +159,14 @@ namespace QGrid.Tests.FilterTests
         [Fact]
         public void String_DoesNotContain_NoResults()
         {
-            var filters = CreateQGridFilters(FilterConditionEnum.Doesnotcontain, new List<object> { "This is a string", "case invariant?" });
+            var values = Fixture.IsCaseSensitive
+                ? new List<object> {"This", "case", "Case" }
+                : new List<object> {"This", "case"};
+
+            var filters = CreateQGridFilters(
+                FilterConditionEnum.Doesnotcontain,
+                values
+            );
 
             var result = ExecuteQuery(filters);
 
@@ -158,13 +176,17 @@ namespace QGrid.Tests.FilterTests
         [Fact]
         public void String_StartsWith_HasResults()
         {
-            var filters = CreateQGridFilters(FilterConditionEnum.Startswith, "this is");
+            var testValue = Fixture.IsCaseSensitive
+                ? "This is"
+                : "this is";
+
+            var filters = CreateQGridFilters(FilterConditionEnum.Startswith, testValue);
 
             var result = ExecuteQuery(filters);
 
             Assert.NotEmpty(result);
             Assert.True(result.Count < Fixture.TotalItems);
-            Assert.All(result, x => Assert.StartsWith("this is".ToLowerInvariant(), x.StringColumn.ToLowerInvariant()));
+            Assert.All(result, x => Assert.StartsWith(testValue.ToLowerInvariant(), x.StringColumn.ToLowerInvariant()));
         }
 
         [Fact]

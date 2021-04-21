@@ -181,16 +181,16 @@ namespace QGrid.Tests.OrderingTests
                 if (orderType == OrderTypeEnum.Asc)
                 {
                     Assert.True(
-                        currentItem.IntNullableColumn == null && nextItem.IntNullableColumn == null ||
-                        currentItem.IntNullableColumn == null && nextItem.IntNullableColumn != null ||
+                        currentItem.IntNullableColumn == null ||
+                        nextItem.IntNullableColumn == null ||
                         currentItem.IntNullableColumn <= nextItem.IntNullableColumn
                     );
                 }
                 else
                 {
                     Assert.True(
-                        currentItem.IntNullableColumn == null && nextItem.IntNullableColumn == null ||
-                        currentItem.IntNullableColumn != null && nextItem.IntNullableColumn == null ||
+                        currentItem.IntNullableColumn == null ||
+                        nextItem.IntNullableColumn == null ||
                         currentItem.IntNullableColumn >= nextItem.IntNullableColumn
                     );
                 }
@@ -239,16 +239,16 @@ namespace QGrid.Tests.OrderingTests
                 if (orderType == OrderTypeEnum.Asc)
                 {
                     Assert.True(
-                        currentItem.DecimalNullableColumn == null && nextItem.DecimalNullableColumn == null ||
-                        currentItem.DecimalNullableColumn == null && nextItem.DecimalNullableColumn != null ||
+                        currentItem.DecimalNullableColumn == null ||
+                        nextItem.DecimalNullableColumn == null ||
                         currentItem.DecimalNullableColumn <= nextItem.DecimalNullableColumn
                     );
                 }
                 else
                 {
                     Assert.True(
-                        currentItem.DecimalNullableColumn == null && nextItem.DecimalNullableColumn == null ||
-                        currentItem.DecimalNullableColumn != null && nextItem.DecimalNullableColumn == null ||
+                        currentItem.DecimalNullableColumn == null ||
+                        nextItem.DecimalNullableColumn == null ||
                         currentItem.DecimalNullableColumn >= nextItem.DecimalNullableColumn
                     );
                 }
