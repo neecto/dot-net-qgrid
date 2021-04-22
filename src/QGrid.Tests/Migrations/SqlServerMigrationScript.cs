@@ -1,4 +1,4 @@
-﻿namespace QGrid.Tests.Db.SqlServer.Migrations
+﻿namespace QGrid.Tests.Migrations
 {
     public static class SqlServerMigrationScript
     {

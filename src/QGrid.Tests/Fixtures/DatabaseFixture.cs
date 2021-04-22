@@ -3,8 +3,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
-using QGrid.Tests.Db.Postgres.Migrations;
-using QGrid.Tests.Db.SqlServer.Migrations;
+using QGrid.Tests.Migrations;
 using QGrid.Tests.Models;
 using QGrid.Tests.Setup;
 
@@ -30,7 +29,7 @@ namespace QGrid.Tests.Fixtures
 
             TestQueryable = _dbContext.TestItems;
             TotalItems = TestQueryable.Count();
-            IsCaseSensitive = Environment.GetEnvironmentVariable("DBSERVER") == "POSTGRES";
+            IsCaseSensitive = DbConfiguration.IsDbCaseSensitive();
         }
 
         public void Dispose()
@@ -62,16 +61,19 @@ namespace QGrid.Tests.Fixtures
 
         private void ApplyMigrationScript()
         {
-            var dbServer = Environment.GetEnvironmentVariable("DBSERVER");
+            var dbServer = DbConfiguration.GetDbServer();
             string migrationSql;
 
             switch (dbServer)
             {
-                case "MSSQL":
+                case DbConfiguration.MsSql:
                     migrationSql = SqlServerMigrationScript.GetMigrationScript();
                     break;
-                case "POSTGRES":
+                case DbConfiguration.Postgres:
                     migrationSql = PostgresMigrationScript.GetMigrationScript();
+                    break;
+                case DbConfiguration.MySql:
+                    migrationSql = MySqlMigrationScript.GetMigrationScript();
                     break;
                 default:
                     migrationSql = SqlServerMigrationScript.GetMigrationScript();

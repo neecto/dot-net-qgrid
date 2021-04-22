@@ -1,4 +1,4 @@
-﻿namespace QGrid.Tests.Db.Postgres.Migrations
+﻿namespace QGrid.Tests.Migrations
 {
     public static class PostgresMigrationScript
     {

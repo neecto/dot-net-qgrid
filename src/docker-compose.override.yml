@@ -14,12 +14,22 @@ services:
   qgrid.postgres.test:
     environment:
       - DBSERVER=POSTGRES
-      - CONNECTION_STRING=Server=postgres;Port=5432;User Id=postgres;Password=postgres;Database=postgres;
+      - CONNECTION_STRING=Server=postgres;Port=5432;User Id=postgres;Password=123QGridTest!@#;Database=postgres;
     entrypoint: dotnet test -c Release --no-build --logger "trx;LogFileName=PostgreSQLTests.trx" --results-directory /var/temp/test-results QGrid.Tests.csproj
     volumes:
       - ../test-results:/var/temp/test-results
     depends_on:
       - postgres
+      
+  qgrid.mysql.test:
+    environment:
+      - DBSERVER=MYSQL
+      - CONNECTION_STRING=server=mysql;uid=root;pwd=123QGridTest!@#;database=qgrid;
+    entrypoint: dotnet test -c Release --no-build --logger "trx;LogFileName=MySQLTests.trx" --results-directory /var/temp/test-results QGrid.Tests.csproj
+    volumes:
+      - ../test-results:/var/temp/test-results
+    depends_on:
+      - mysql
         
   sqlserver:
     image: "mcr.microsoft.com/mssql/server"
@@ -36,6 +46,16 @@ services:
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=123QGridTest!@#
       - PGDATA=/pgdata
     restart: always
+    
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123QGridTest!@#
+      MYSQL_DATABASE: qgrid
+    ports:
+      - "3306:3306"

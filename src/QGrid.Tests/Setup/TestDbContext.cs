@@ -10,19 +10,22 @@ namespace QGrid.Tests.Setup
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var dbServer = Environment.GetEnvironmentVariable("DBSERVER");
-            var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            var dbServer = DbConfiguration.GetDbServer();
+            var connectionString = DbConfiguration.GetConnectionString();
 
             Console.WriteLine($"Setting up EF DB context for {dbServer}.");
             Console.WriteLine($"using connection string: {connectionString}");
 
             switch (dbServer)
             {
-                case "MSSQL":
+                case DbConfiguration.MsSql:
                     optionsBuilder.ConfigureSqlServer(connectionString);
                     break;
-                case "POSTGRES":
+                case DbConfiguration.Postgres:
                     optionsBuilder.ConfigurePostgres(connectionString);
+                    break;
+                case DbConfiguration.MySql:
+                    optionsBuilder.ConfigureMySql(connectionString);
                     break;
                 default:
                     connectionString = "Server=.;Database=qgrid;User=sa;Password=123QGridTest!@#;";

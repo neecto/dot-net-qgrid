@@ -14,3 +14,10 @@ services:
         context: .
         dockerfile: Dockerfile
         target: test
+        
+  qgrid.mysql.test:
+    image: qgrid.test
+    build:
+        context: .
+        dockerfile: Dockerfile
+        target: test
