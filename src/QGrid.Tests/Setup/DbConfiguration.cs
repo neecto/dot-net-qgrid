@@ -10,10 +10,14 @@ namespace QGrid.Tests.Setup
         public const string MySql = "MYSQL";
 
         public static string GetDbServer()
-            => Environment.GetEnvironmentVariable("DBSERVER");
+            => Environment.GetEnvironmentVariable("DBSERVER") == null
+                ? "MSSQL"
+                : Environment.GetEnvironmentVariable("DBSERVER");
 
         public static string GetConnectionString()
-            => Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            => Environment.GetEnvironmentVariable("CONNECTION_STRING") == null
+                ? "Server=.;Database=master;User=sa;Password=123QGridTest!@#;"
+                : Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
         public static bool IsDbCaseSensitive()
             => Environment.GetEnvironmentVariable("DBSERVER") == Postgres;

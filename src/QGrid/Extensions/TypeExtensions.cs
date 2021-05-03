@@ -17,6 +17,9 @@ namespace QGrid.Extensions
         public static bool IsBoolType(this Type type)
             => type == typeof(bool) || type == typeof(bool?);
 
+        public static bool IsGuidType(this Type type)
+            => type == typeof(Guid) || type == typeof(Guid?);
+
         public static bool IsEnum(this Type type)
         {
             var nullableUnderlyingType = Nullable.GetUnderlyingType(type);

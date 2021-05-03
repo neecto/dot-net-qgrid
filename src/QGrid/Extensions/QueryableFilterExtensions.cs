@@ -99,6 +99,14 @@ namespace QGrid.Extensions
                     entityParameterExpression
                 );
             }
+            else if (propertyInfo.PropertyType.IsGuidType())
+            {
+                filterExpressionProvider = new GuidFilterExpressionsProvider(
+                    propertyInfo,
+                    filter,
+                    entityParameterExpression
+                );
+            }
             else
             {
                 throw new ArgumentOutOfRangeException(
