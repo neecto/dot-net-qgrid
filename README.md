@@ -10,7 +10,7 @@ You can download QGrid as NuGet here:
   
 ## QGrid and QGrid.EntityFrameworkCore
 
-QGrid consists of two NuGet packages: QGrid and QGrid.EntityFrameworkCore. The base QGrid package targets **.NET Standard** framework and has no external dependencies at all while QGrid.EntityFrameworkCore package, as the name suggests, depends on **Microsoft.EntityFrameworkCore**. That's made in order to allow using QGrid with any version of EntityFramwork (even pre-core). However, QGrid does not expose an async method for querying the data, so take a look at the [docs]() to see how to work with it.
+QGrid consists of two NuGet packages: QGrid and QGrid.EntityFrameworkCore. The base QGrid package targets **.NET Standard** framework and has no external dependencies at all; while QGrid.EntityFrameworkCore package, as the name suggests, depends on **Microsoft.EntityFrameworkCore**. That's made in order to allow using QGrid with any version of EntityFramwork (even pre-core). However, QGrid does not expose an async method for querying the data, so take a look at the [docs]() to see how to work with it.
 
 ## Example
 
