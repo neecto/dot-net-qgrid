@@ -14,8 +14,8 @@ For ordering, you need to specify the name of the property to order by and the o
 
 ## Public Methods
 Besides `ToQGridResult()` QGrid provides two more IQueryable extension methods in case you'd like to perform separate sorting or filtering:
-- `ApplyOrdering()` which accepts [QGridOrder model](#-qgridorder) 
-- `ApplyFilters()` which accepts [QGridFilters model](#-qgridfilters)
+- `ApplyOrdering()` which accepts [QGridOrder model](#qgridorder) 
+- `ApplyFilters()` which accepts [QGridFilters model](#qgridfilters)
 
 Both of these methods return `IQueryable<T>` where `T` is the type of your original projection model.
 Also, because QGrid by it's own does not implement async methods, you can use `ApplyOrdering()` and `ApplyFilters()` to implement your own async version of `ToQGridResult()`. However, unless you are using a pre-core version of Entity Framework, you can just call `ToQGridResultAsync()` method from **QGrid.EntityFrameworkCore** library.
