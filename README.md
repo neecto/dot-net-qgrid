@@ -16,7 +16,8 @@ QGrid consists of two NuGet packages: QGrid and QGrid.EntityFrameworkCore. The b
 
 Here's a simple example of how to use QGrid:
 ```c#
-  // of course, usually you would deserialize the QGridRequest object from JSON that's coming into your API endpoint handler
+  // of course, usually you would deserialize the QGridRequest object 
+  // from JSON that's coming into your API endpoint handler
   var request = new QGridRequest
   {
       Ordering = new List<QGridOrder>
