@@ -42,10 +42,37 @@ Also, because QGrid by it's own does not implement async methods, you can use `A
 | :--- | :--- | :--- |
 | Column | string | Name of a column that needs to be filtered  |
 | Condition | FilterConditionEnum | Type of filtering (see [Filter Conditions](#-filter-conditions)) |
-| Value | object | The value to filter with |
+| Value | object | The value to filter with. Should have the same type as the filtered column |
 
 ### Filter Conditions
-Filter conditions that can be applied to a property of a queried object depend on the property type. In case when a filter condition is not supported for a property type, `ArgumentOutOfRangeException` will be thrown by `ToQGridResult()` or `ApplyFilters()` method.
+Filter conditions that can be applied to a property of a queried object depend on the property type. In case when a filter condition is not supported for a property type, `ArgumentOutOfRangeException` will be thrown by `ToQGridResult()` or `ApplyFilters()` method. Here's the list of data types and filter conditions supported by QGrid:
+
+#### `bool` and `bool?`
+| Filter Condition | Description |
+| :--- | :--- |
+| Eq | Equal to filter value |
+| Neq | Not equal to filter value |
+
+#### `DateTime` and `DateTime?`
+| Filter Condition | Description |
+| :--- | :--- |
+| Eq | Equal to filter value |
+| Neq | Not equal to filter value |
+| Lt | Less (earlier in time) than provided filter value |
+| Gt | Greater (later in time) than provided filter value |
+| Lte | Less (earlier in time) than or equal to provided filter value |
+| Gte | Greater (later in time) than or equal to provided filter value |
+| Eqdate | Equal to filter value with only Date part of DateTime value compared |
+| Neqdate | Not equal to filter value with only Date part of DateTime value compared |
+| Lt | Less (earlier in time) than provided filter value with only Date part of DateTime value compared |
+| Gt | Greater (later in time) than provided filter value with only Date part of DateTime value compared |
+| Lte | Less (earlier in time) than or equal to provided filter value with only Date part of DateTime value compared |
+| Gte | Greater (later in time) than or equal to provided filter value with only Date part of DateTime value compared |
+
+| NOTE: |
+| :--- |
+| Filter conditions with *date* postfix, like `Eqdate` are useful when you need to disregard the Time part of a DateTime value for filtering. For example, when you send a filter object with `Eqdate` condition and value *[5/4/2021 3:14:16 PM]*, records that have values with different time but the same date will still be included. |
+
 
 ##  QGridOrder
 
