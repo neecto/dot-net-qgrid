@@ -26,4 +26,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run tests in docker
-        run: docker-compose -f docker-compose.yml -f docker-compose.override.yml up
+        run: docker-compose -f src/docker-compose.yml -f src/docker-compose.override.yml up
