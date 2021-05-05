@@ -64,10 +64,10 @@ Filter conditions which can be applied to a property of a queried object depend 
 | Gte | Greater (later in time) than or equal to provided filter value |
 | Eqdate | Equal to filter value with only Date part of DateTime value compared |
 | Neqdate | Not equal to filter value with only Date part of DateTime value compared |
-| Lt | Less (earlier in time) than provided filter value with only Date part of DateTime value compared |
-| Gt | Greater (later in time) than provided filter value with only Date part of DateTime value compared |
-| Lte | Less (earlier in time) than or equal to provided filter value with only Date part of DateTime value compared |
-| Gte | Greater (later in time) than or equal to provided filter value with only Date part of DateTime value compared |
+| Ltdate | Less (earlier in time) than provided filter value with only Date part of DateTime value compared |
+| Gtdate | Greater (later in time) than provided filter value with only Date part of DateTime value compared |
+| Ltedate | Less (earlier in time) than or equal to provided filter value with only Date part of DateTime value compared |
+| Gtedate | Greater (later in time) than or equal to provided filter value with only Date part of DateTime value compared |
 
 | NOTE: |
 | :--- |
