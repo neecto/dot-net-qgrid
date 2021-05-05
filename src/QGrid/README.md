@@ -148,24 +148,24 @@ QGridResult<T> model represent a response that `.ToQGridResult()` method produce
 ### Simple request with no filtering or ordering that shows 10 items per page on the first page
 ```json
 {
-  'pageSize': 10,
-  'pageNumber': 1
+  "pageSize": 10,
+  "pageNumber": 1
 }
 ```
 
 ### Request with multiple orderings
 ```json
 {
-  'pageSize': 10,
-  'pageNumber': 1,
-  'ordering': [
+  "pageSize": 10,
+  "pageNumber": 1,
+  "ordering": [
     {
-      'column': 'dateOfBirth',
-      'type': 'desc'
+      "column": "dateOfBirth",
+      "type": "desc"
     },
     {
-      'column': 'salary',
-      'type': 'asc'
+      "column": "salary",
+      "type": "asc"
     }
   ]
 }
@@ -174,31 +174,31 @@ QGridResult<T> model represent a response that `.ToQGridResult()` method produce
 ### Request with ordering and filters
 ```json
 {
-  'pageSize': 10,
-  'pageNumber': 1,
-  'ordering': [
+  "pageSize": 10,
+  "pageNumber": 1,
+  "ordering": [
     {
-      'column': 'dateOfBirth',
-      'type': 'desc'
+      "column": "dateOfBirth",
+      "type": "desc"
     }
   ],
-  'filters': {
-    'operator': 'and',
-    'filters': [
+  "filters": {
+    "operator": "and",
+    "filters": [
       {
-        'column': 'title',
-        'condition': 'contains',
-        'value: 'dev'
+        "column": "title",
+        "condition": "contains",
+        "value: "dev"
       },
       {
-        'column': 'salary',
-        'condition': 'lte',
-        'value: '1000'
+        "column": "salary",
+        "condition": "lte",
+        "value: "1000"
       },
       {
-        'column': 'level',
-        'condition': 'oneof',
-        'value: ['lead', 'senior']
+        "column": "level",
+        "condition": "oneof",
+        "value: ["lead", "senior"]
       }
     ]
   }
