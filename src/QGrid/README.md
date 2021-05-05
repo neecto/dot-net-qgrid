@@ -10,7 +10,7 @@ For ordering, you need to specify the name of the property to order by and the o
 
 | NOTE: |
 | :--- |
-| QGrid library can work with any version of Entity Framework or Entity Framwork Core because it has no external dependecies. However, due to that it does not implement async method. For that, you can use [QGrid.EntityFrameworkCore](https://github.com/neecto/dot-net-qgrid/tree/master/src/QGrid.EntityFrameworkCore)|
+| QGrid library can work with any version of Entity Framework or Entity Framwork Core because it has no external dependecies. However, beacuse of that it does not implement an async method for executing the request. For that, you can use [QGrid.EntityFrameworkCore](https://github.com/neecto/dot-net-qgrid/tree/master/src/QGrid.EntityFrameworkCore) or just copy the [extension method](https://github.com/neecto/dot-net-qgrid/blob/master/src/QGrid.EntityFrameworkCore/QueryableExtensions.cs) to your project if you have older Entity Framework version.|
 
 ## Public Methods
 Besides `ToQGridResult()` QGrid provides two more IQueryable extension methods in case you'd like to perform separate sorting or filtering:
@@ -45,15 +45,15 @@ Also, because QGrid by it's own does not implement async methods, you can use `A
 | Value | object | The value to filter with. Should have the same type as the filtered column |
 
 ### Filter Conditions
-Filter conditions that can be applied to a property of a queried object depend on the property type. In case when a filter condition is not supported for a property type, `ArgumentOutOfRangeException` will be thrown by `ToQGridResult()` or `ApplyFilters()` method. Here's the list of data types and filter conditions supported by QGrid:
+Filter conditions which can be applied to a property of a queried object depend on the filtered property type. In case when a filter condition is not supported for a property type, `ArgumentOutOfRangeException` will be thrown by `ToQGridResult()` or `ApplyFilters()` method. Here's the list of data types and filter conditions supported by QGrid:
 
-#### `bool` and `bool?`
+#### `bool`
 | Filter Condition | Description |
 | :--- | :--- |
 | Eq | Equal to filter value |
 | Neq | Not equal to filter value |
 
-#### `DateTime` and `DateTime?`
+#### `DateTime`
 | Filter Condition | Description |
 | :--- | :--- |
 | Eq | Equal to filter value |
@@ -73,6 +73,53 @@ Filter conditions that can be applied to a property of a queried object depend o
 | :--- |
 | Filter conditions with *date* postfix, like `Eqdate` are useful when you need to disregard the Time part of a DateTime value for filtering. For example, when you send a filter object with `Eqdate` condition and value *[5/4/2021 3:14:16 PM]*, records that have values with different time but the same date will still be included. |
 
+#### Enums
+| Filter Condition | Description |
+| :--- | :--- |
+| Eq | Equal to filter value |
+| Neq | Not equal to filter value |
+| Oneof | Equal to one of the provided values |
+| Notoneof | Not equal to any of the provided values |
+
+
+| NOTE: |
+| :--- |
+| The filter value that is provided for filtering by a property that is an Enum can be either a string or an integer. In any case, it should be a valid value within the Enum type that the filtered property has, otherwise QGrid will throw the `OverflowException`. |
+
+| NOTE: |
+| :--- |
+| `Oneof` and `Notoneof` filter conditions require a collection object as a filter value (array in JSON, object that implements IEnumerable in .NET). This operator is helpful when you need to compare the column value to a list of values. |
+
+#### `Guid`
+| Filter Condition | Description |
+| :--- | :--- |
+| Eq | Equal to filter value |
+| Neq | Not equal to filter value |
+
+#### Numbers
+QGrid supports the following types for properties with number values: `int`, `long`, `decimal`, and `double`. And the following filter conditions:
+
+| Filter Condition | Description |
+| :--- | :--- |
+| Eq | Equal to filter value |
+| Neq | Not equal to filter value |
+| Lt | Less than provided filter value |
+| Gt | Greater than provided filter value |
+| Lte | Less than or equal to provided filter value |
+| Gte | Greater than or equal to provided filter value |
+
+#### `string`
+| Filter Condition | Description |
+| :--- | :--- |
+| Eq | Equal to filter value |
+| Neq | Not equal to filter value |
+| Contains | String contains the filter value |
+| Doesnotcontain | String does not contain the filter value |
+| Startswith | String starts with the filter value |
+| Endswith | String ends with the filter value |
+
+#### Nullable Columns
+QGrid supports nullable columns for any value type and any filter condition. You can also pass `null` as a filter value, however, in this case you can only use *Eq* and *Neq* filter conditions, otherwise QGrid will throw the `ArgumentOutOfRangeException`. Other than that, passing `null` as a filter value for *Eq* or *Neq* will work like in other case, simply comparing the value to null.
 
 ##  QGridOrder
 
