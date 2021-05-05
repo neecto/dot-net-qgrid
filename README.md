@@ -3,9 +3,11 @@
 ## What's QGrid?
 QGrid is a small but powerful library build for .NET Core for server-side paging, sorting, and filtering data for grids, lists, tables, etc. Filtering and sorting operations are performed on the database level using Entity Framework and Linq Expressions, so it is required for QGrid to work.
 
+QGrid works with SQL databases, supports all possible table column types, can have unlimited ordering and filtering clauses with numerous filter conditions.
+
 ## NuGet Packages
 
-You can download QGrid as NuGet here:
+You can download QGrid and QGrid.EntityFrameworkCore as NuGet packages here:
 <links>
   
 ## QGrid and QGrid.EntityFrameworkCore
