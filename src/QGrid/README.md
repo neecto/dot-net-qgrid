@@ -132,7 +132,7 @@ QGrid supports nullable columns for any value type and any filter condition. You
 | When multiple QGridOrder objects exist in `Ordering` collection of a QGridRequest object, the ordering operations will be applied according to the order of the items in that collection |
 
 ## QGridResult
-QGridResult<T> model represent a response that `.ToQGridResult()` method produces, it's generic argument is the type matches the generic type of `IQueryable<T>` which the method is executed on.
+QGridResult<T> model represent a response that `.ToQGridResult()` method produces, it's generic argument value matches the generic type of `IQueryable<T>` which the method is executed on.
   
 | Property | Type | Description |
 | :--- | :--- | :--- |
@@ -194,6 +194,11 @@ QGridResult<T> model represent a response that `.ToQGridResult()` method produce
         'column': 'salary',
         'condition': 'lte',
         'value: '1000'
+      },
+      {
+        'column': 'level',
+        'condition': 'oneof',
+        'value: ['lead', 'senior']
       }
     ]
   }
