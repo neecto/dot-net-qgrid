@@ -1,4 +1,4 @@
-# QGrid
+# QGrid Documentation
 
 ## Summary
 Querying data with QGrid is really simple. All you need to do, is to generate a valid **QGridRequest** object that represents how you want the data to be paged, sorted, and filtered, and pass this object as an argument to `ToQGridResult()` extension method that you would invoke on an `IQueryable<T>` object. This method will translate the request into SQL, execute it, and return a **QGridResult** object.
