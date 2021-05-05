@@ -122,5 +122,33 @@ QGrid supports the following types for properties with number values: `int`, `lo
 QGrid supports nullable columns for any value type and any filter condition. You can also pass `null` as a filter value, however, in this case you can only use *Eq* and *Neq* filter conditions, otherwise QGrid will throw the `ArgumentOutOfRangeException`. Other than that, passing `null` as a filter value for *Eq* or *Neq* will work like in other case, simply comparing the value to null.
 
 ##  QGridOrder
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| Column | string | Name of a column to order by  |
+| Type | OrderTypeEnum | Type of ordering. Possible values: OrderTypeEnum.Asc, OrderTypeEnum.Desc |
 
-## Example JSON
+| NOTE: |
+| :--- |
+| When multiple QGridOrder objects exist in `Ordering` collection of a QGridRequest object, the ordering operations will be applied according to the order of the items in that collection |
+
+## QGridResult
+QGridResult<T> model represent a response that `.ToQGridResult()` method produces, it's generic argument is the type matches the generic type of `IQueryable<T>` which the method is executed on.
+  
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| PageNumber | int | Page number that is being returned. Mathes the PageNumber of QGridRequest  |
+| ItemsOnPage | int | Amount of records the grid page actually contains |
+| PagesTotal | int | Total number of pages that contain records with current filtering |
+| Total | int | Total amount of records before filtering |
+| TotalFiltered | int | The amount of records after filtering |
+| Items | IList\<T\> | Result records |
+
+## Example JSON requests
+
+### Simple request with no filtering or ordering that shows 10 items per page on the first page
+```json
+{
+  pageSize: 10,
+  pageNumber: 1
+}
+```
