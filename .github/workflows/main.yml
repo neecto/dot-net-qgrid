@@ -23,7 +23,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Setup databases
-        run: docker-compose -f src/docker-compose.db.yml
+        run: docker-compose -f src/docker-compose.db.yml up
   test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -36,7 +36,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run tests
-        run: docker-compose -f src/docker-compose.yml src/docker-compose.override.yml
+        run: docker-compose -f src/docker-compose.yml src/docker-compose.override.yml up
         
       - name: Cleanup
         run: docker-compose down --remove-orphans
