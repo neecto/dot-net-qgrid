@@ -36,7 +36,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run tests
-        run: docker-compose -f src/docker-compose.yml src/docker-compose.override.yml up
+        run: docker-compose -f src/docker-compose.yml -f src/docker-compose.override.yml up
         
       - name: Cleanup
         run: docker-compose down --remove-orphans
