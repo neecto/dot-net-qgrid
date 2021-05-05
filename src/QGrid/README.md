@@ -10,7 +10,7 @@ For ordering, you need to specify the name of the property to order by and the o
 
 | NOTE: |
 | :--- |
-| QGrid library can work with any version of Entity Framework or Entity Framwork Core because it has no external dependencies. However, beacuse of that it does not implement an async method for executing the request. For that, you can use [QGrid.EntityFrameworkCore](https://github.com/neecto/dot-net-qgrid/tree/master/src/QGrid.EntityFrameworkCore) or just copy the [extension method](https://github.com/neecto/dot-net-qgrid/blob/master/src/QGrid.EntityFrameworkCore/QueryableExtensions.cs) to your project if you have older Entity Framework version.|
+| QGrid library can work with any version of Entity Framework or Entity Framwork Core because it has no external dependencies. However, due to that, it does not implement an async method for executing the request. For that, you can use [QGrid.EntityFrameworkCore](https://github.com/neecto/dot-net-qgrid/tree/master/src/QGrid.EntityFrameworkCore) or just copy the [extension method](https://github.com/neecto/dot-net-qgrid/blob/master/src/QGrid.EntityFrameworkCore/QueryableExtensions.cs) to your project if you have older Entity Framework version.|
 
 ## Public Methods
 Besides `ToQGridResult()` QGrid provides two more IQueryable extension methods in case you'd like to perform separate sorting or filtering:
