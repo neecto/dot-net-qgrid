@@ -42,4 +42,4 @@ Here's a simple example of how to use QGrid:
   var employees = _dbContext.Employees.ToQGridResult(request);
 ```
 
-## Docs
+## [Detailed Docs](https://github.com/neecto/dot-net-qgrid/tree/master/src/QGrid)
