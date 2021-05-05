@@ -26,8 +26,8 @@ Also, because QGrid by it's own does not implement async methods, you can use `A
 | :--- | :--- | :--- |
 | PageSize | int | The amount of records to be displayed on a grid page |
 | PageNumber | int | The page number to display (starting from 1) |
-| QGridFilters | QGridFilters | See [QGridFilters](#qgridfilters) |
-| Ordering | QGridFilters | See [QGridOrder](#qgridorder) |
+| QGridFilters | Filters | See [QGridFilters](#qgridfilters) |
+| Ordering | Ordering | See [QGridOrder](#qgridorder) |
 
 ##  QGridFilters
 
@@ -148,7 +148,54 @@ QGridResult<T> model represent a response that `.ToQGridResult()` method produce
 ### Simple request with no filtering or ordering that shows 10 items per page on the first page
 ```json
 {
-  pageSize: 10,
-  pageNumber: 1
+  'pageSize': 10,
+  'pageNumber': 1
+}
+```
+
+### Request with multiple orderings
+```json
+{
+  'pageSize': 10,
+  'pageNumber': 1,
+  'ordering': [
+    {
+      'column': 'dateOfBirth',
+      'type': 'desc'
+    },
+    {
+      'column': 'salary',
+      'type': 'asc'
+    }
+  ]
+}
+```
+
+### Request with ordering and filters
+```json
+{
+  'pageSize': 10,
+  'pageNumber': 1,
+  'ordering': [
+    {
+      'column': 'dateOfBirth',
+      'type': 'desc'
+    }
+  ],
+  'filters': {
+    'operator': 'and',
+    'filters': [
+      {
+        'column': 'title',
+        'condition': 'contains',
+        'value: 'dev'
+      },
+      {
+        'column': 'salary',
+        'condition': 'lte',
+        'value: '1000'
+      }
+    ]
+  }
 }
 ```
