@@ -14,7 +14,7 @@ namespace QGrid.EntityFrameworkCore
         {
             var total = await query.CountAsync();
             var resultQuery = query
-                .ApplyFilters(request.QGridFilters)
+                .ApplyFilters(request.Filters)
                 .ApplyOrdering(request.Ordering);
 
             var totalFiltered = await resultQuery.CountAsync();

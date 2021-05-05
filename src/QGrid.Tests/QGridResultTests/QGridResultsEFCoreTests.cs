@@ -118,7 +118,7 @@ namespace QGrid.Tests.QGridResultTests
                 {
                     new QGridOrder("DecimalNullableColumn")
                 },
-                QGridFilters = new QGridFilters
+                Filters = new QGridFilters
                 {
                     Operator = FilterOperatorEnum.And,
                     Filters = new List<QGridFilter>
@@ -156,7 +156,7 @@ namespace QGrid.Tests.QGridResultTests
                 {
                     new QGridOrder("DecimalNullableColumn")
                 },
-                QGridFilters = new QGridFilters
+                Filters = new QGridFilters
                 {
                     Operator = FilterOperatorEnum.And,
                     Filters = new List<QGridFilter>
@@ -194,7 +194,7 @@ namespace QGrid.Tests.QGridResultTests
                 {
                     new QGridOrder("DecimalNullableColumn")
                 },
-                QGridFilters = new QGridFilters
+                Filters = new QGridFilters
                 {
                     Operator = FilterOperatorEnum.And,
                     Filters = new List<QGridFilter>
