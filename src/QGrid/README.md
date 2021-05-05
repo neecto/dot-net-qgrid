@@ -35,7 +35,7 @@ Also, because QGrid by it's own does not implement async methods, you can use `A
 | Property | Type | Description |
 | :--- | :--- | :--- |
 | Operator | FilterOperatorEnum | The logical operator that is used to combine filters. Values: `And`, `Or`  |
-| Filters | IList'QGridFilter | The list of filters to be applied |
+| Filters | IList\<QGridFilter\> | The list of filters to be applied |
   
 ### QGridFilter Type
 | Property | Type | Description |
