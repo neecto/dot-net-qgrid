@@ -188,17 +188,17 @@ QGridResult<T> model represent a response that `.ToQGridResult()` method produce
       {
         "column": "title",
         "condition": "contains",
-        "value: "dev"
+        "value": "dev"
       },
       {
         "column": "salary",
         "condition": "lte",
-        "value: "1000"
+        "value": "1000"
       },
       {
         "column": "level",
         "condition": "oneof",
-        "value: ["lead", "senior"]
+        "value": ["lead", "senior"]
       }
     ]
   }
