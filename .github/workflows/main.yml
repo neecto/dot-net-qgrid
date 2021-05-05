@@ -25,10 +25,13 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run SQL server tests
+        working-directory: ./src
         run: docker-compose run qgrid.sqlserver.test
         
       - name: Run Postgres tests
+        working-directory: ./src
         run: docker-compose run qgrid.postgres.test
         
       - name: Run MySQL tests
+        working-directory: ./src
         run: docker-compose run qgrid.mysql.test
