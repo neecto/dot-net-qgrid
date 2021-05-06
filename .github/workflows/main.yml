@@ -38,15 +38,6 @@ jobs:
         working-directory: ./src
         run: docker-compose down --remove-orphans
         
-      - name: Publish Test Results
-        uses: dorny/test-reporter@v1.4.2
-        if: always()
-        with:
-          name: SQL Server Tests
-          artifact: sql-server-test-results
-          reporter: dotnet-trx
-          path: 'SqlServerTests.trx'
-          
   test-postgresql:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -70,15 +61,6 @@ jobs:
       - name: Cleanup containers
         working-directory: ./src
         run: docker-compose down --remove-orphans
-        
-      - name: Publish Test Results
-        uses: dorny/test-reporter@v1.4.2
-        if: always()
-        with:
-          name: PostgreSQL Tests
-          artifact: postgres-test-results
-          reporter: dotnet-trx
-          path: 'PostgreSQLTests.trx'
           
   test-mysql:
     # The type of runner that the job will run on
@@ -103,12 +85,3 @@ jobs:
       - name: Cleanup containers
         working-directory: ./src
         run: docker-compose down --remove-orphans
-        
-      - name: Publish Test Results
-        uses: dorny/test-reporter@v1.4.2
-        if: always()
-        with:
-          name: MySQL Tests
-          artifact: mysql-test-results
-          reporter: dotnet-trx
-          path: 'MySQLTests.trx'
