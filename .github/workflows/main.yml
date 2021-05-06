@@ -28,6 +28,12 @@ jobs:
         working-directory: ./src
         run: docker-compose run qgrid.sqlserver.test
         
+      - name: Publish SQL Server test results artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sql-server-test-results
+          path: /var/temp/test-results/SqlServerTests.trx
+        
       - name: Cleanup containers
         working-directory: ./src
         run: docker-compose down --remove-orphans
@@ -37,7 +43,7 @@ jobs:
         if: always()
         with:
           name: SQL Server Tests
-          path: /var/temp/test-results/SqlServerTests.trx
+          artifact: sql-server-test-results
           reporter: dotnet-trx
           
   test-postgresql:
@@ -54,6 +60,12 @@ jobs:
         working-directory: ./src
         run: docker-compose run qgrid.postgres.test
         
+      - name: Publish PostgreSQL test results artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: postgres-test-results
+          path: /var/temp/test-results/PostgreSQLTests.trx
+        
       - name: Cleanup containers
         working-directory: ./src
         run: docker-compose down --remove-orphans
@@ -63,7 +75,7 @@ jobs:
         if: always()
         with:
           name: PostgreSQL Tests
-          path: /var/temp/test-results/PostgreSQLTests.trx
+          artifact: postgres-test-results
           reporter: dotnet-trx
           
   test-mysql:
@@ -80,6 +92,12 @@ jobs:
         working-directory: ./src
         run: docker-compose run qgrid.mysql.test
         
+      - name: Publish MySQL test results artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: mysql-test-results
+          path: /var/temp/test-results/MySQLTests.trx
+        
       - name: Cleanup containers
         working-directory: ./src
         run: docker-compose down --remove-orphans
@@ -88,6 +106,6 @@ jobs:
         uses: dorny/test-reporter@v1.4.2
         if: always()
         with:
-          name: MySql Tests
-          path: /var/temp/test-results/MySQLTests.trx
+          name: MySQL Tests
+          artifact: mysql-test-results
           reporter: dotnet-trx
