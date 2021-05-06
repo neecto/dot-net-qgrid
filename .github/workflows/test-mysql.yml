@@ -27,12 +27,14 @@ jobs:
         working-directory: ./src
         run: docker-compose run qgrid.mysql.test
 
-      - name: Publish MySQL test results artifact
-        uses: actions/upload-artifact@v2
+      - name: Publish Test Results
+        uses: dorny/test-reporter@v1.4.2
         if: always()
         with:
-          name: mysql-test-results
+          name: MySQL Tests
+          reporter: dotnet-trx
           path: ./test-results/MySQLTests.trx
+          fail-on-error: 'false'
 
       - name: Cleanup containers
         working-directory: ./src

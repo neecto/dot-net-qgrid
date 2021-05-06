@@ -28,12 +28,14 @@ jobs:
         working-directory: ./src
         run: docker-compose run qgrid.sqlserver.test
 
-      - name: Publish SQL Server test results artifact
-        uses: actions/upload-artifact@v2
+      - name: Publish Test Results
+        uses: dorny/test-reporter@v1.4.2
         if: always()
         with:
-          name: sql-server-test-results
+          name: SQL Server Tests
+          reporter: dotnet-trx
           path: ./test-results/SqlServerTests.trx
+          fail-on-error: 'false'
 
       - name: Cleanup containers
         working-directory: ./src

@@ -27,12 +27,14 @@ jobs:
         working-directory: ./src
         run: docker-compose run qgrid.postgres.test
 
-      - name: Publish PostgreSQL test results artifact
-        uses: actions/upload-artifact@v2
+      - name: Publish Test Results
+        uses: dorny/test-reporter@v1.4.2
         if: always()
         with:
-          name: postgres-test-results
+          name: PostgreSQL Tests
+          reporter: dotnet-trx
           path: ./test-results/PostgreSQLTests.trx
+          fail-on-error: 'false'
 
       - name: Cleanup containers
         working-directory: ./src
