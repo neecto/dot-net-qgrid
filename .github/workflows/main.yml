@@ -30,12 +30,14 @@ jobs:
         
       - name: Publish SQL Server test results artifact
         uses: actions/upload-artifact@v2
+        if: always()
         with:
           name: sql-server-test-results
           path: ./test-results/SqlServerTests.trx
         
       - name: Cleanup containers
         working-directory: ./src
+        if: always()
         run: docker-compose down --remove-orphans
         
   test-postgresql:
@@ -54,12 +56,14 @@ jobs:
         
       - name: Publish PostgreSQL test results artifact
         uses: actions/upload-artifact@v2
+        if: always()
         with:
           name: postgres-test-results
           path: ./test-results/PostgreSQLTests.trx
         
       - name: Cleanup containers
         working-directory: ./src
+        if: always()
         run: docker-compose down --remove-orphans
           
   test-mysql:
@@ -78,10 +82,12 @@ jobs:
         
       - name: Publish MySQL test results artifact
         uses: actions/upload-artifact@v2
+        if: always()
         with:
           name: mysql-test-results
           path: ./test-results/MySQLTests.trx
         
       - name: Cleanup containers
         working-directory: ./src
+        if: always()
         run: docker-compose down --remove-orphans
