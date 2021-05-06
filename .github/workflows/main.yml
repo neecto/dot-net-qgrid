@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: sql-server-test-results
-          path: /test-results/SqlServerTests.trx
+          path: ./test-results/SqlServerTests.trx
         
       - name: Cleanup containers
         working-directory: ./src
@@ -65,7 +65,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: postgres-test-results
-          path: /test-results/PostgreSQLTests.trx
+          path: ./test-results/PostgreSQLTests.trx
         
       - name: Cleanup containers
         working-directory: ./src
@@ -98,7 +98,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: mysql-test-results
-          path: /test-results/MySQLTests.trx
+          path: ./test-results/MySQLTests.trx
         
       - name: Cleanup containers
         working-directory: ./src
