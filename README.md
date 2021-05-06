@@ -5,6 +5,13 @@ QGrid is a small but powerful library build for .NET Core for server-side paging
 
 QGrid works with SQL databases, supports all possible table column types, can have unlimited ordering and filtering clauses with numerous filter conditions.
 
+## Tested on
+[![MS SQL Server](https://github.com/neecto/dot-net-qgrid/actions/workflows/test-sqlserver.yml/badge.svg)](https://github.com/neecto/dot-net-qgrid/actions/workflows/test-sqlserver.yml)
+
+[![PostgreSQL](https://github.com/neecto/dot-net-qgrid/actions/workflows/test-postgres.yml/badge.svg)](https://github.com/neecto/dot-net-qgrid/actions/workflows/test-postgres.yml)
+
+[![MySQL](https://github.com/neecto/dot-net-qgrid/actions/workflows/test-mysql.yml/badge.svg)](https://github.com/neecto/dot-net-qgrid/actions/workflows/test-mysql.yml)
+
 ## NuGet Packages
 
 You can download QGrid and QGrid.EntityFrameworkCore as NuGet packages here:
