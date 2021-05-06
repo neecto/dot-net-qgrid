@@ -45,7 +45,7 @@ jobs:
           name: SQL Server Tests
           artifact: sql-server-test-results
           reporter: dotnet-trx
-          path: SqlServerTests.trx
+          path: 'SqlServerTests.trx'
           
   test-postgresql:
     # The type of runner that the job will run on
@@ -78,7 +78,7 @@ jobs:
           name: PostgreSQL Tests
           artifact: postgres-test-results
           reporter: dotnet-trx
-          path: PostgreSQLTests.trx
+          path: 'PostgreSQLTests.trx'
           
   test-mysql:
     # The type of runner that the job will run on
@@ -111,4 +111,4 @@ jobs:
           name: MySQL Tests
           artifact: mysql-test-results
           reporter: dotnet-trx
-          path: MySQLTests.trx
+          path: 'MySQLTests.trx'
