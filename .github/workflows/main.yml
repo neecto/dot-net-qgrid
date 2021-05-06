@@ -13,7 +13,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  test:
+  test-sqlserver:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -28,9 +28,53 @@ jobs:
         working-directory: ./src
         run: docker-compose run qgrid.sqlserver.test
         
+      - name: Cleanup containers
+        working-directory: ./src
+        run: docker-compose down --remove-orphans
+        
+      - name: Publish Test Results
+        uses: dorny/test-reporter@v1.4.2
+        if: always()
+        with:
+          name: SQL Server Tests
+          path: /var/temp/test-results/SqlServerTests.trx
+          reporter: dotnet-trx
+          
+  test-postgresql:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Check out code
+        uses: actions/checkout@v2
+        
       - name: Run Postgres tests
         working-directory: ./src
         run: docker-compose run qgrid.postgres.test
+        
+      - name: Cleanup containers
+        working-directory: ./src
+        run: docker-compose down --remove-orphans
+        
+      - name: Publish Test Results
+        uses: dorny/test-reporter@v1.4.2
+        if: always()
+        with:
+          name: PostgreSQL Tests
+          path: /var/temp/test-results/PostgreSQLTests.trx
+          reporter: dotnet-trx
+          
+  test-mysql:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Check out code
+        uses: actions/checkout@v2
         
       - name: Run MySQL tests
         working-directory: ./src
@@ -40,9 +84,10 @@ jobs:
         working-directory: ./src
         run: docker-compose down --remove-orphans
         
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
+      - name: Publish Test Results
+        uses: dorny/test-reporter@v1.4.2
         if: always()
         with:
-          files: /var/temp/test-results/*.trx
-
+          name: MySql Tests
+          path: /var/temp/test-results/MySQLTests.trx
+          reporter: dotnet-trx
