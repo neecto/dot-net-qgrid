@@ -59,9 +59,10 @@ namespace QGrid.Tests.FilterTests
 
             var result = ExecuteQuery(new QGridFilters(FilterOperatorEnum.And, filters));
 
-            Assert.NotEmpty(result);
-            Assert.True(result.Count < Fixture.TotalItems);
-            Assert.All(result, x => Assert.Null(x.StringColumn));
+            Assert.Empty(result);
+            //Assert.NotEmpty(result);
+            //Assert.True(result.Count < Fixture.TotalItems);
+            //Assert.All(result, x => Assert.Null(x.StringColumn));
         }
 
         [Fact]
